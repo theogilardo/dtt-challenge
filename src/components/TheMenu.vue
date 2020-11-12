@@ -1,0 +1,115 @@
+<template>
+  <div class="container">
+    <div class="container__header">
+      <h1 class="container__header__title">
+        Food Recipes <br />
+        For You
+      </h1>
+      <p class="container__header__sub-text">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
+        ratione. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
+        voluptas qui atque voluptatem nostrum distinctio.
+      </p>
+    </div>
+    <div class="container__recipes">
+      <div
+        v-for="recipe in recipes"
+        :key="recipe.idMeal"
+        class="container__recipe"
+      >
+        <img
+          :src="recipe.strMealThumb"
+          alt="Recipe Photo"
+          class="container__recipe__photo"
+        />
+        <h3 class="container__recipe__name">{{ recipe.strMeal }}</h3>
+        <div class="container__recipe__info">
+          <p>{{ recipe.strArea }}</p>
+          <p>{{ recipe.strCategory }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
+  name: "Menu",
+  created() {
+    this.$store.dispatch("getRecipes");
+    console.log(this.recipes);
+  },
+  computed: {
+    recipes() {
+      return this.$store.getters.recipes;
+    },
+  },
+});
+</script>
+
+<style scoped lang="stylus">
+
+.container
+  height 100vh
+  padding-top 3.5rem
+
+  &__header
+    max-width 80rem
+    margin 0 auto
+    padding 10rem 0 3rem 0
+
+    &__title
+      // font-family: 'Paytone One', sans-serif;
+      // font-family: 'Abril Fatface', cursive;
+      font-family: 'messenger-texture';
+      // font-size 8rem
+      font-size 6rem
+
+    &__sub-text
+      margin-top 2.5rem
+      padding 0 15rem
+      font-family: 'Montserrat Alternates', sans-serif;
+      // font-family: 'Raleway', sans-serif;
+      // color: #a9a9a9;
+
+  &__recipes
+    max-width 120rem
+    padding-top 6rem
+    margin 0 auto
+    padding-top 3rem
+    display flex
+    align-items center
+    overflow-x auto
+
+  &__recipe
+    padding: 3.5rem 1rem;
+    margin-bottom 3rem
+    height: 25rem;
+    flex: 0 0 22rem;
+    margin: 0 2rem;
+    background: #ffffffb3;
+    border-radius: 15px;
+    transition all .4s
+
+    &:hover
+      transform translateY(-15px)
+
+    &__photo
+      width 10rem
+      height 10rem
+      border-radius 50%
+      object-fit cover
+      margin-bottom 1.5rem
+
+    &__name
+      margin-bottom 1rem
+      border-top: 1px solid #dedede;
+      padding-top: 1.5rem;
+
+    &__info
+      display flex
+      align-items center
+      justify-content space-around
+</style>
