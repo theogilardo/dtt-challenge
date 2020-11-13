@@ -91,11 +91,9 @@ export default Vue.extend({
       width 100%
       height 100%
       padding 8rem 3rem
-      // overflow-y auto
       display flex
       align-items center
       justify-content center
-      // flex-direction column
       background #2c3e50
       color white
 
@@ -109,20 +107,7 @@ export default Vue.extend({
         flex-direction column
 
     &__ingredient
-      // position relative
       margin-bottom 1rem
-
-      // &::before
-      //   content: ""
-      //   position absolute
-      //   top 120%
-      //   left 50%
-      //   transform translateX(-50%)
-      //   width 100%
-      //   height 100%
-      //   width 8rem
-      //   height 1px
-      //   background #eeeeee
 
     &__image
       width 100%
