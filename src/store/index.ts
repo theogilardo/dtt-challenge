@@ -3,7 +3,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import Recipe from "../interface/randomAPI";
+import Recipe from "../interface/RecipeApi";
 // import category from "../interface/categoryAPI";
 
 Vue.use(Vuex);
@@ -11,12 +11,16 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     recipe: null,
+    recipeDetails: null,
     recipes: [],
     categories: [],
   },
   getters: {
     recipe(state) {
       return state.recipe;
+    },
+    recipeDetails(state) {
+      return state.recipeDetails;
     },
     recipes(state) {
       return state.recipes;
@@ -28,6 +32,9 @@ export default new Vuex.Store({
   mutations: {
     storeRecipe(state, recipe) {
       state.recipe = recipe;
+    },
+    storeRecipeDetails(state, recipe) {
+      state.recipeDetails = recipe;
     },
     storeRecipes(state, recipes) {
       state.recipes = recipes;

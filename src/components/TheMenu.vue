@@ -18,7 +18,8 @@
         class="container__recipe"
       >
         <router-link
-          :to="{ name: 'recipe-details', params: { recipe: recipe } }"
+          :to="{ name: 'recipe-details', params: { id: recipe.idMeal } }"
+          @click.native="storeRecipeDetails(recipe)"
           class="container__recipe__link"
         >
           <img
@@ -39,6 +40,7 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Recipe from "../interface/RecipeApi";
 
 export default Vue.extend({
   name: "Menu",
@@ -48,6 +50,11 @@ export default Vue.extend({
   computed: {
     recipes() {
       return this.$store.getters.recipes;
+    },
+  },
+  methods: {
+    storeRecipeDetails(recipe: Recipe) {
+      this.$store.commit("storeRecipeDetails", recipe);
     },
   },
 });

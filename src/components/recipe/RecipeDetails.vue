@@ -34,19 +34,18 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Recipe from "../../interface/RecipeApi";
 
 export default Vue.extend({
   name: "RecipeDetails",
   data() {
     return {
-      recipe: "",
       isIngredientsActive: false,
     };
   },
-  created() {
-    this.recipe = this.$route.params.recipe;
-    console.log(this.$route.params.id);
+  computed: {
+    recipe() {
+      return this.$store.getters.recipeDetails;
+    },
   },
   methods: {
     showIngredients() {
