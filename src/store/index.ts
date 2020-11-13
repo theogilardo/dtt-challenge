@@ -53,6 +53,23 @@ export default new Vuex.Store({
       );
       const meal = response.data.meals[0];
       console.log(meal);
+
+      meal.ingredients = [];
+
+      for (let j = 1; j <= 20; j++) {
+        if (meal[`strIngredient${j}`]) {
+          meal.ingredients.push(
+            `${meal[`strIngredient${j}`]} <strong> ${
+              meal[`strMeasure${j}`]
+            }</strong>`
+          );
+        } else {
+          break;
+        }
+      }
+
+      console.log(meal);
+
       commit("storeRecipe", meal);
     },
   },

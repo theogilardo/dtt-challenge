@@ -1,17 +1,30 @@
 <template>
   <div class="container">
     <div v-if="recipe" class="container__recipe">
-      <img
-        :src="recipe.strMealThumb"
-        alt="Recipe Image"
-        class="container__recipe__image"
-      />
+      <div class="container__recipe__right-panel">
+        <img
+          v-if="!isIngredientsActive"
+          :src="recipe.strMealThumb"
+          alt="Recipe Image"
+          class="container__recipe__image"
+        />
+        <div v-else class="container__recipe__ingredients">
+          <div>
+            <p
+              v-for="ingredient in recipe.ingredients"
+              :key="ingredient.id"
+              v-html="ingredient"
+              class="container__recipe__ingredient"
+            ></p>
+          </div>
+        </div>
+      </div>
       <h2 class="container__recipe__name">{{ recipe.strMeal }}</h2>
       <p class="container__recipe__info">
         {{ recipe.strInstructions }}
       </p>
-      <div class="container__recipe__ingredients">
-        <button @click="fetchIngredients" class="btn btn--ingredients">
+      <div class="container__recipe__button">
+        <button @click="showIngredients" class="btn btn--ingredients">
           Ingredients
         </button>
       </div>
@@ -26,6 +39,11 @@
 import Vue from "vue";
 export default Vue.extend({
   name: "RecipeRandom",
+  data() {
+    return {
+      isIngredientsActive: true,
+    };
+  },
   created() {
     this.$store.dispatch("fetchRandomRecipe");
   },
@@ -38,8 +56,8 @@ export default Vue.extend({
     shuffleRecipe() {
       this.$store.dispatch("fetchRandomRecipe");
     },
-    fetchIngredients() {
-      this.$store.dispatch("fetchRandomRecipe");
+    showIngredients() {
+      this.isIngredientsActive = !this.isIngredientsActive;
     },
   },
 });
@@ -65,9 +83,48 @@ export default Vue.extend({
     overflow: hidden;
     background #eeeeeeCC
 
-    &__image
+    &__right-panel
       grid-row 1 / 4
       grid-column 2 / 3
+
+    &__ingredients
+      width 100%
+      height 100%
+      padding 8rem 3rem
+      // overflow-y auto
+      display flex
+      align-items center
+      justify-content center
+      // flex-direction column
+      background #2c3e50
+      color white
+
+      div
+        height 75%
+        width 100%
+        overflow-y auto
+        display flex
+        align-items center
+        justify-content flex-start
+        flex-direction column
+
+    &__ingredient
+      // position relative
+      margin-bottom 1rem
+
+      // &::before
+      //   content: ""
+      //   position absolute
+      //   top 120%
+      //   left 50%
+      //   transform translateX(-50%)
+      //   width 100%
+      //   height 100%
+      //   width 8rem
+      //   height 1px
+      //   background #eeeeee
+
+    &__image
       width 100%
       height 100%
       object-fit cover
@@ -76,6 +133,7 @@ export default Vue.extend({
       grid-row 1 / 2
       grid-column 1 / 2
       font-size 3rem
+      padding 0 3rem
       display flex
       align-items center
       justify-content center
@@ -90,7 +148,9 @@ export default Vue.extend({
       justify-content center
       overflow-y auto
 
-    &__ingredients
+    &__button
+      grid-row 3 / 4
+      grid-column 1 / 2
       display flex
       align-items center
       justify-content center
@@ -99,6 +159,8 @@ export default Vue.extend({
       position absolute
       top 10px
       right 10px
+      border-radius 0
+      border-top-right-radius 10px
 
     .btn--ingredients
       color #ee5354
