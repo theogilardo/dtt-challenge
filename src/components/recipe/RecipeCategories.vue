@@ -1,0 +1,83 @@
+<template>
+  <div class="container">
+    <div
+      v-for="category in categories"
+      :key="category.idCategory"
+      class="container__category"
+    >
+      <img
+        :src="category.strCategoryThumb"
+        class="container__category__image"
+        alt="Recipe Category"
+      />
+      <h3 class="container__category__name">{{ category.strCategory }}</h3>
+      <!-- {{ category.strCategory }} -->
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from "vue";
+export default Vue.extend({
+  name: "RecipeCategories",
+  created() {
+    this.$store.dispatch("fetchCategories");
+    console.log(this.categories);
+  },
+  computed: {
+    categories() {
+      return this.$store.getters.categories;
+    },
+  },
+});
+</script>
+
+<style lang="stylus" scoped>
+
+.container
+  min-height 100vh
+  max-width 100rem
+  margin 0 auto
+  padding 10rem
+  display flex
+  align-items center
+  justify-content center
+  // background-color: #8EC5FC;
+  // background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  display grid
+  grid-template-rows: repeat(3, 1fr)
+  grid-template-columns : repeat(3, 1fr)
+  gap 2rem
+
+  &__category
+    position relative
+    display flex
+    align-items center
+    justify-content center
+    overflow hidden
+    border-radius 15px
+    height 100%
+    transition all .5s
+
+    &:hover
+      transform scale(1.05)
+
+
+    &__name
+      position absolute
+      top 0
+      left 0
+      width 100%
+      height 100%
+      display flex
+      align-items center
+      justify-content center
+      background #5a5a5a3d
+      color white
+      z-index 10
+
+
+    &__image
+      object-fit cover
+      width 100%
+</style>

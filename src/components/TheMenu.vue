@@ -38,7 +38,7 @@ import Vue from "vue";
 export default Vue.extend({
   name: "Menu",
   created() {
-    this.$store.dispatch("getRecipes");
+    this.$store.dispatch("fetchRecipes");
     console.log(this.recipes);
   },
   computed: {

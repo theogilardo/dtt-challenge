@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <the-navbar></the-navbar>
-    <router-view />
+    <transition name="slide-fade">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -18,6 +20,7 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus">
+
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway&display=swap');
@@ -38,13 +41,12 @@ export default Vue.extend({
   font-family: messenger-texture;
 }
 
-
 *,
 *::before,
 *::after
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: border-box
   text-decoration none
 
 #app
@@ -53,9 +55,12 @@ export default Vue.extend({
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  background-image url('./assets/homepagev5.jpg')
-  background-position center
-  background-size cover
+  // background-image url('./assets/homepagev5.jpg')
+  // background-position center
+  // background-size cover
+  background-color: #eee;
+  // background-color: #8EC5FC;
+  // background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
   min-height 100vh
 
 html
@@ -81,4 +86,15 @@ button:focus
 
 input:focus
   outline 0
+
+
+.slide-fade-enter-active
+  transition: all .8s ease;
+
+.slide-fade-leave-active
+  transition: all .8s ease
+
+.slide-fade-enter, .slide-fade-leave-to
+  transform: translateY(25px);
+  opacity: 0;
 </style>

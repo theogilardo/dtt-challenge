@@ -1,11 +1,14 @@
 <template>
   <div class="navbar">
-    <div class="navbar__logo">
+    <router-link class="navbar__logo navbar__link" to="/">
       <img class="navbar__img" src="../assets/chef.png" alt="Chef hats" />
+    </router-link>
+    <div>
+      <router-link class="navbar__link" to="/categories"
+        >Categories</router-link
+      >
+      <router-link class="navbar__link" to="/random">Random Recipe</router-link>
     </div>
-    <router-link to="/">Meals</router-link>
-    <router-link to="/categories">Categories</router-link>
-    <router-link to="/random-meal">Shuffle Meal</router-link>
   </div>
 </template>
 
@@ -21,14 +24,18 @@ export default Vue.extend({
 .navbar
   position: fixed;
   z-index: 100;
-  top: 0;
+  top: 10px;
   left: 0;
   width: 100%;
   height: 3.5rem;
   font-size: 1.2rem;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding 0 4rem
+
+  div > *:last-child
+    margin-left 2rem
 
   &__logo
     width 30px
@@ -46,8 +53,7 @@ export default Vue.extend({
     left 50%
     transform translate(-50%, -50%)
 
-  & > div > *
-    margin: 0 1rem;
-    color: black;
-    font-weight: 700;
+  &__link
+    color #2c3e50
+    font-weight bold
 </style>
