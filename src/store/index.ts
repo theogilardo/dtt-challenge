@@ -44,6 +44,11 @@ export default new Vuex.Store({
     },
   },
   actions: {
+    storeRecipeDetails({ commit }, recipe) {
+      commit("storeRecipeDetails", recipe);
+      localStorage.removeItem("recipeDetails");
+      localStorage.setItem("recipeDetails", JSON.stringify(recipe));
+    },
     async fetchRecipes({ commit }) {
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v2/9973533/latest.php"
@@ -98,6 +103,8 @@ export default new Vuex.Store({
 
       console.log(recipe);
 
+      localStorage.removeItem("recipeRandom");
+      localStorage.setItem("recipeRandom", JSON.stringify(recipe));
       commit("storeRecipe", recipe);
     },
   },

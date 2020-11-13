@@ -36,6 +36,8 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
+
 import Vue from "vue";
 export default Vue.extend({
   name: "RecipeRandom",
@@ -45,10 +47,24 @@ export default Vue.extend({
     };
   },
   created() {
-    this.$store.dispatch("fetchRandomRecipe");
+    if (!this.isRecipeInLocalStorage) {
+      this.$store.dispatch("fetchRandomRecipe");
+    }
   },
   computed: {
+    // recipe() {
+    //   return this.$store.getters.recipe;
+    // },
     recipe() {
+      if (this.isRecipeAvailable) {
+        return this.$store.getters.recipe;
+      }
+      return JSON.parse(localStorage.getItem("recipeRandom"));
+    },
+    isRecipeInLocalStorage() {
+      return JSON.parse(localStorage.getItem("recipeRandom"));
+    },
+    isRecipeAvailable() {
       return this.$store.getters.recipe;
     },
   },

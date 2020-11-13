@@ -33,7 +33,10 @@
 </template>
 
 <script lang="ts">
+// @ts-nocheck
+
 import Vue from "vue";
+import Recipe from "../interface/RecipeApi";
 
 export default Vue.extend({
   name: "RecipeDetails",
@@ -44,6 +47,12 @@ export default Vue.extend({
   },
   computed: {
     recipe() {
+      if (this.isRecipeDetailsAvailable) {
+        return this.$store.getters.recipeDetails;
+      }
+      return JSON.parse(localStorage.getItem("recipeDetails"));
+    },
+    isRecipeDetailsAvailable() {
       return this.$store.getters.recipeDetails;
     },
   },

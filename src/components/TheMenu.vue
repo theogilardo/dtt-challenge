@@ -54,7 +54,7 @@ export default Vue.extend({
   },
   methods: {
     storeRecipeDetails(recipe: Recipe) {
-      this.$store.commit("storeRecipeDetails", recipe);
+      this.$store.dispatch("storeRecipeDetails", recipe);
     },
   },
 });
