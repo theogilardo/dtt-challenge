@@ -6,10 +6,14 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    recipe: null,
     recipes: [],
     categories: [],
   },
   getters: {
+    recipe(state) {
+      return state.recipe;
+    },
     recipes(state) {
       return state.recipes;
     },
@@ -18,6 +22,9 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    storeRecipe(state, recipe) {
+      state.recipe = recipe;
+    },
     storeRecipes(state, recipes) {
       state.recipes = recipes;
     },
@@ -37,10 +44,16 @@ export default new Vuex.Store({
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/categories.php"
       );
-      console.log(response);
       const categories = response.data.categories;
-      console.log(categories);
       commit("storeCategories", categories);
+    },
+    async fetchRandomRecipe({ commit }) {
+      const response = await axios.get(
+        "https://www.themealdb.com/api/json/v1/1/random.php"
+      );
+      const meal = response.data.meals[0];
+      console.log(meal);
+      commit("storeRecipe", meal);
     },
   },
   modules: {},

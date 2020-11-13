@@ -11,7 +11,6 @@
         alt="Recipe Category"
       />
       <h3 class="container__category__name">{{ category.strCategory }}</h3>
-      <!-- {{ category.strCategory }} -->
     </div>
   </div>
 </template>
