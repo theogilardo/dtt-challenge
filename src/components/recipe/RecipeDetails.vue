@@ -24,7 +24,7 @@
         {{ recipe.strInstructions }}
       </p>
       <div class="container__recipe__button">
-        <button @click="showIngredients" class="btn btn--ingredients">
+        <button @click="showIngredients" class="btn">
           Ingredients
         </button>
       </div>

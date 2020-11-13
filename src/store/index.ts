@@ -14,6 +14,8 @@ export default new Vuex.Store({
     recipeDetails: null,
     recipes: [],
     categories: [],
+    sortAscending: false,
+    sortDescending: false,
   },
   getters: {
     recipe(state) {
@@ -23,13 +25,26 @@ export default new Vuex.Store({
       return state.recipeDetails;
     },
     recipes(state) {
-      return state.recipes;
+      if (!state.sortAscending && !state.sortDescending) return state.recipes;
+
+      if (state.sortAscending)
+        return state.recipes.sort((a, b) => (a.strMeal > b.strMeal ? 1 : -1));
+
+      return state.recipes.sort((a, b) => (a.strMeal < b.strMeal ? 1 : -1));
     },
     categories(state) {
       return state.categories;
     },
   },
   mutations: {
+    sortAscendingOrder(state) {
+      state.sortAscending = true;
+      state.sortDescending = false;
+    },
+    sortDescendingOrder(state) {
+      state.sortAscending = false;
+      state.sortDescending = true;
+    },
     storeRecipe(state, recipe) {
       state.recipe = recipe;
     },
@@ -51,7 +66,7 @@ export default new Vuex.Store({
     },
     async fetchRecipes({ commit }) {
       const response = await axios.get(
-        "https://www.themealdb.com/api/json/v2/9973533/latest.php"
+        "https://www.themealdb.com/api/json/v2/9973533/randomselection.php"
       );
 
       const recipes: Recipe[] = response.data.meals;

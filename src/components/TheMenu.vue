@@ -5,11 +5,12 @@
         Food Recipes <br />
         For You
       </h1>
-      <p class="container__header__sub-text">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-        ratione. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo
-        voluptas qui atque voluptatem nostrum distinctio.
-      </p>
+      <button @click="sortAscendingOrder" class="btn btn--sort">
+        Sort A <strong> → </strong> Z
+      </button>
+      <button @click="sortDescendingOrder" class="btn btn--sort">
+        Sort Z <strong> ← </strong> A
+      </button>
     </div>
     <div class="container__recipes">
       <div
@@ -56,11 +57,20 @@ export default Vue.extend({
     storeRecipeDetails(recipe: Recipe) {
       this.$store.dispatch("storeRecipeDetails", recipe);
     },
+    sortAscendingOrder() {
+      this.$store.commit("sortAscendingOrder");
+    },
+    sortDescendingOrder() {
+      this.$store.commit("sortDescendingOrder");
+    },
   },
 });
 </script>
 
 <style scoped lang="stylus">
+
+.btn--sort
+  margin 3rem 1rem 0 1rem
 
 .container
   height 100vh
