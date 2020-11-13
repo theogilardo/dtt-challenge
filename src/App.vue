@@ -55,9 +55,9 @@ export default Vue.extend({
   -moz-osx-font-smoothing grayscale
   text-align center
   color #2c3e50
-  // background-image url('./assets/homepagev5.jpg')
-  // background-position center
-  // background-size cover
+  background-image url('./assets/homepagev5.jpg')
+  background-position center
+  background-size cover
   background-color: #eee;
   // background-color: #8EC5FC;
   // background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
@@ -81,12 +81,22 @@ html
   p
     font-size: 1.3rem;
 
+.btn
+  border none
+  padding 1rem 1.5rem
+  border-radius 10px
+  color white
+  background #ee5354CC
+  text-transform uppercase
+  font-weight bold
+  cursor pointer
+  transition all .5s
+
 button:focus
   outline 0
 
 input:focus
   outline 0
-
 
 .slide-fade-enter-active
   transition: all .8s ease;

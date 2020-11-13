@@ -39,7 +39,6 @@ export default Vue.extend({
   name: "Menu",
   created() {
     this.$store.dispatch("fetchRecipes");
-    console.log(this.recipes);
   },
   computed: {
     recipes() {
