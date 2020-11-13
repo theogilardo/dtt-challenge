@@ -14,19 +14,19 @@ const routes: Array<RouteConfig> = [
     component: TheMenu,
   },
   {
+    path: "/recipe/:id",
+    name: "recipe-details",
+    component: RecipeDetails,
+  },
+  {
     path: "/categories",
-    name: "RecipeCategories",
+    name: "recipe-categories",
     component: RecipeCategories,
   },
   {
     path: "/random",
-    name: "RecipeRandom",
+    name: "recipe-random",
     component: RecipeRandom,
-  },
-  {
-    path: "/details",
-    name: "RecipeDetails",
-    component: RecipeDetails,
   },
 ];
 

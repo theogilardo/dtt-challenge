@@ -17,16 +17,21 @@
         :key="recipe.idMeal"
         class="container__recipe"
       >
-        <img
-          :src="recipe.strMealThumb"
-          alt="Recipe Photo"
-          class="container__recipe__photo"
-        />
-        <h3 class="container__recipe__name">{{ recipe.strMeal }}</h3>
-        <div class="container__recipe__info">
-          <p>{{ recipe.strArea }}</p>
-          <p>{{ recipe.strCategory }}</p>
-        </div>
+        <router-link
+          :to="{ name: 'recipe-details', params: { id: recipe } }"
+          class="container__recipe__link"
+        >
+          <img
+            :src="recipe.strMealThumb"
+            alt="Recipe Photo"
+            class="container__recipe__photo"
+          />
+          <h3 class="container__recipe__name">{{ recipe.strMeal }}</h3>
+          <div class="container__recipe__info">
+            <p>{{ recipe.strArea }}</p>
+            <p>{{ recipe.strCategory }}</p>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -94,6 +99,10 @@ export default Vue.extend({
 
     &:hover
       transform translateY(-15px)
+
+    &__link
+      text-decoration none
+      color #2c3e50
 
     &__photo
       width 10rem

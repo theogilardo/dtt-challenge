@@ -6,7 +6,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-export default Vue.extend({});
+export default Vue.extend({
+  name: "RecipeDetails",
+  created() {
+    console.log(this.$route.params.id);
+  },
+});
 </script>
 
 <style lang="stylus" scoped>

@@ -1,6 +1,10 @@
+// @ts-nocheck
+
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import Recipe from "../interface/randomAPI";
+// import category from "../interface/categoryAPI";
 
 Vue.use(Vuex);
 
@@ -37,7 +41,26 @@ export default new Vuex.Store({
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v2/9973533/latest.php"
       );
-      const recipes = response.data.meals;
+
+      const recipes: Recipe[] = response.data.meals;
+
+      // var map: { [key: string]: string } = {};
+      console.log(recipes);
+      recipes.forEach((recipe: Recipe) => {
+        recipe.ingredients = [];
+        for (let j = 1; j <= 20; j++) {
+          if (recipe[`strIngredient${j}`]) {
+            recipe.ingredients.push(
+              `${recipe[`strIngredient${j}`]} <strong> ${
+                recipe[`strMeasure${j}`]
+              }</strong>`
+            );
+          }
+        }
+      });
+
+      console.log(recipes);
+
       commit("storeRecipes", recipes);
     },
     async fetchCategories({ commit }) {
@@ -51,26 +74,24 @@ export default new Vuex.Store({
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
-      const meal = response.data.meals[0];
-      console.log(meal);
+      const recipe = response.data.meals[0];
+      console.log(recipe);
 
-      meal.ingredients = [];
+      recipe.ingredients = [];
 
       for (let j = 1; j <= 20; j++) {
-        if (meal[`strIngredient${j}`]) {
-          meal.ingredients.push(
-            `${meal[`strIngredient${j}`]} <strong> ${
-              meal[`strMeasure${j}`]
+        if (recipe[`strIngredient${j}`]) {
+          recipe.ingredients.push(
+            `${recipe[`strIngredient${j}`]} <strong> ${
+              recipe[`strMeasure${j}`]
             }</strong>`
           );
-        } else {
-          break;
         }
       }
 
-      console.log(meal);
+      console.log(recipe);
 
-      commit("storeRecipe", meal);
+      commit("storeRecipe", recipe);
     },
   },
   modules: {},
