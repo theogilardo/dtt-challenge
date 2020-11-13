@@ -18,7 +18,7 @@
         class="container__recipe"
       >
         <router-link
-          :to="{ name: 'recipe-details', params: { id: recipe } }"
+          :to="{ name: 'recipe-details', params: { recipe: recipe } }"
           class="container__recipe__link"
         >
           <img

@@ -41,7 +41,7 @@ export default Vue.extend({
   name: "RecipeRandom",
   data() {
     return {
-      isIngredientsActive: true,
+      isIngredientsActive: false,
     };
   },
   created() {
