@@ -13,7 +13,7 @@
           class="container__recipe__recommendations"
         >
           <div
-            v-for="recipe in recipes.slice(0, 3)"
+            v-for="recipe in recipeRecommendations"
             :key="recipe.idMeal"
             class="container__recipe__recommendation"
           >
@@ -93,11 +93,11 @@ export default Vue.extend({
       }
       return JSON.parse(localStorage.getItem("recipeDetails"));
     },
+    recipeRecommendations() {
+      return this.$store.getters.recipeRecommendations;
+    },
     isRecipeDetailsAvailable() {
       return this.$store.getters.recipeDetails;
-    },
-    recipes() {
-      return this.$store.getters.recipes;
     },
   },
   methods: {
@@ -153,6 +153,10 @@ export default Vue.extend({
       margin 1rem
       height 15rem
       position relative
+      transition all .5s
+
+      &:hover
+        transform scale(1.05)
 
       &__photo
         width 100%

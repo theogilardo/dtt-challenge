@@ -55,6 +55,7 @@ export default Vue.extend({
   },
   methods: {
     storeRecipeDetails(recipe: Recipe) {
+      this.$store.dispatch("storeRecipeRecommendations", recipe);
       this.$store.dispatch("storeRecipeDetails", recipe);
     },
     sortAscendingOrder() {

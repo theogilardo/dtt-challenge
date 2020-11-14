@@ -11,6 +11,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     recipe: null,
+    recipeRecommendations: null,
     recipeDetails: null,
     recipes: [],
     categories: [],
@@ -23,6 +24,9 @@ export default new Vuex.Store({
     },
     recipeDetails(state) {
       return state.recipeDetails;
+    },
+    recipeRecommendations(state) {
+      return state.recipeRecommendations;
     },
     recipes(state) {
       if (!state.sortAscending && !state.sortDescending) return state.recipes;
@@ -51,6 +55,9 @@ export default new Vuex.Store({
     storeRecipeDetails(state, recipe) {
       state.recipeDetails = recipe;
     },
+    storeRecipeRecommendations(state, recommendations) {
+      state.recipeRecommendations = recommendations;
+    },
     storeRecipes(state, recipes) {
       state.recipes = recipes;
     },
@@ -63,6 +70,18 @@ export default new Vuex.Store({
       commit("storeRecipeDetails", recipe);
       localStorage.removeItem("recipeDetails");
       localStorage.setItem("recipeDetails", JSON.stringify(recipe));
+    },
+    async storeRecipeRecommendations({ commit }, recipe) {
+      const response = await axios.get(
+        `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipe.strCategory}`
+      );
+      const recommendations = response.data.meals.slice(0, 3);
+      commit("storeRecipeRecommendations", recommendations);
+      localStorage.removeItem("recipeRecommendations");
+      localStorage.setItem(
+        "recipeRecommendations",
+        JSON.stringify(recommendations)
+      );
     },
     async fetchRecipes({ commit }) {
       const response = await axios.get(
@@ -97,7 +116,7 @@ export default new Vuex.Store({
       const categories = response.data.categories;
       commit("storeCategories", categories);
     },
-    async fetchRandomRecipe({ commit }) {
+    async fetchRandomRecipe({ commit, dispatch }) {
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
@@ -121,6 +140,7 @@ export default new Vuex.Store({
       localStorage.removeItem("recipeRandom");
       localStorage.setItem("recipeRandom", JSON.stringify(recipe));
       commit("storeRecipe", recipe);
+      dispatch("storeRecipeRecommendations", recipe);
     },
   },
   modules: {},

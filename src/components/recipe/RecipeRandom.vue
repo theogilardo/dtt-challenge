@@ -3,11 +3,30 @@
     <div v-if="recipe" class="container__recipe">
       <div class="container__recipe__right-panel">
         <img
-          v-if="!isIngredientsActive"
+          v-if="!areIngredientsActive && !areRecommendationsActive"
           :src="recipe.strMealThumb"
           alt="Recipe Image"
           class="container__recipe__image"
         />
+        <div
+          v-else-if="areRecommendationsActive"
+          class="container__recipe__recommendations"
+        >
+          <div
+            v-for="recipe in recipeRecommendations"
+            :key="recipe.idMeal"
+            class="container__recipe__recommendation"
+          >
+            <img
+              class="container__recipe__recommendation__photo"
+              :src="recipe.strMealThumb"
+              alt=""
+            />
+            <p class="container__recipe__recommendation__name">
+              {{ recipe.strMeal }}
+            </p>
+          </div>
+        </div>
         <div v-else class="container__recipe__ingredients">
           <div>
             <p
@@ -18,6 +37,16 @@
             ></p>
           </div>
         </div>
+        <!-- <div v-else class="container__recipe__ingredients">
+          <div>
+            <p
+              v-for="ingredient in recipe.ingredients"
+              :key="ingredient.id"
+              v-html="ingredient"
+              class="container__recipe__ingredient"
+            ></p>
+          </div>
+        </div> -->
       </div>
       <h2 class="container__recipe__name">{{ recipe.strMeal }}</h2>
       <div class="container__recipe__extra">
@@ -64,7 +93,8 @@ export default Vue.extend({
   name: "RecipeRandom",
   data() {
     return {
-      isIngredientsActive: false,
+      areIngredientsActive: false,
+      areRecommendationsActive: false,
     };
   },
   created() {
@@ -85,16 +115,19 @@ export default Vue.extend({
     isRecipeAvailable() {
       return this.$store.getters.recipe;
     },
+    recipeRecommendations() {
+      return this.$store.getters.recipeRecommendations;
+    },
   },
   methods: {
     shuffleRecipe() {
       this.$store.dispatch("fetchRandomRecipe");
     },
     showIngredients() {
-      this.isIngredientsActive = !this.isIngredientsActive;
+      this.areIngredientsActive = !this.areIngredientsActive;
     },
     showRecommendations() {
-      this.isIngredientsActive = !this.isIngredientsActive;
+      this.areRecommendationsActive = !this.areRecommendationsActive;
     },
   },
 });
@@ -123,6 +156,47 @@ export default Vue.extend({
     &__right-panel
       grid-row 1 / 5
       grid-column 2 / 3
+
+    &__recommendations
+      width 100%
+      height 100%
+      display flex
+      align-items center
+      justify-content center
+      flex-direction column
+      background #2c3e50
+      padding 4rem
+      color white
+
+    &__recommendation
+      border-radius 10px
+      overflow hidden
+      margin 1rem
+      height 15rem
+      position relative
+      transition all .5s
+
+      &:hover
+        transform scale(1.05)
+
+      &__photo
+        width 100%
+        height 100%
+        object-fit cover
+
+      &__name
+        position absolute
+        background #33333380
+        text-transform uppercase
+        font-weight bold
+        width 100%
+        height 100%
+        display flex
+        align-items center
+        justify-content center
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
 
     &__ingredients
       width 100%
