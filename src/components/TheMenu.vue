@@ -80,7 +80,7 @@ export default Vue.extend({
   &__header
     max-width 80rem
     margin 0 auto
-    padding 10rem 0 3rem 0
+    padding 6rem 0 3rem 0
 
     &__title
       // font-family: 'Paytone One', sans-serif;

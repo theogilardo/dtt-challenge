@@ -79,7 +79,7 @@
         </button>
       </div>
       <button @click="shuffleRecipe" class="btn btn--shuffle">
-        Suffle
+        Shuffle
       </button>
     </div>
   </div>
@@ -172,7 +172,7 @@ export default Vue.extend({
       border-radius 10px
       overflow hidden
       margin 1rem
-      height 15rem
+      height 11rem
       position relative
       transition all .5s
 

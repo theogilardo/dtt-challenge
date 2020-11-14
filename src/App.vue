@@ -95,6 +95,9 @@ html
   cursor pointer
   transition all .5s
 
+  &:hover
+    transform translateY(-3px)
+
 button:focus
   outline 0
 
