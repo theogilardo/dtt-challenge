@@ -3,11 +3,30 @@
     <div v-if="recipe" class="container__recipe">
       <div class="container__recipe__right-panel">
         <img
-          v-if="!isIngredientsActive"
+          v-if="!areIngredientsActive && !areRecommendationsActive"
           :src="recipe.strMealThumb"
           alt="Recipe Image"
           class="container__recipe__image"
         />
+        <div
+          v-else-if="areRecommendationsActive"
+          class="container__recipe__recommendations"
+        >
+          <div
+            v-for="recipe in recipes.slice(0, 3)"
+            :key="recipe.idMeal"
+            class="container__recipe__recommendation"
+          >
+            <img
+              class="container__recipe__recommendation__photo"
+              :src="recipe.strMealThumb"
+              alt=""
+            />
+            <p class="container__recipe__recommendation__name">
+              {{ recipe.strMeal }}
+            </p>
+          </div>
+        </div>
         <div v-else class="container__recipe__ingredients">
           <div>
             <p
@@ -42,8 +61,11 @@
         {{ recipe.strInstructions }}
       </p>
       <div class="container__recipe__button">
-        <button @click="showIngredients" class="btn">
+        <button @click="showIngredients" class="btn btn--ingredients">
           Ingredients
+        </button>
+        <button @click="showRecommendations" class="btn">
+          Recommendations
         </button>
       </div>
     </div>
@@ -60,7 +82,8 @@ export default Vue.extend({
   name: "RecipeDetails",
   data() {
     return {
-      isIngredientsActive: false,
+      areIngredientsActive: false,
+      areRecommendationsActive: false,
     };
   },
   computed: {
@@ -73,10 +96,16 @@ export default Vue.extend({
     isRecipeDetailsAvailable() {
       return this.$store.getters.recipeDetails;
     },
+    recipes() {
+      return this.$store.getters.recipes;
+    },
   },
   methods: {
     showIngredients() {
-      this.isIngredientsActive = !this.isIngredientsActive;
+      this.areIngredientsActive = !this.areIngredientsActive;
+    },
+    showRecommendations() {
+      this.areRecommendationsActive = !this.areRecommendationsActive;
     },
   },
 });
@@ -105,6 +134,44 @@ export default Vue.extend({
     &__right-panel
       grid-row 1 / 5
       grid-column 2 / 3
+
+    // REFACTOR THIS !!!
+    &__recommendations
+      width 100%
+      height 100%
+      display flex
+      align-items center
+      justify-content center
+      flex-direction column
+      background #2c3e50
+      padding 4rem
+      color white
+
+    &__recommendation
+      border-radius 10px
+      overflow hidden
+      margin 1rem
+      height 15rem
+      position relative
+
+      &__photo
+        width 100%
+        height 100%
+        object-fit cover
+
+      &__name
+        position absolute
+        background #33333380
+        text-transform uppercase
+        font-weight bold
+        width 100%
+        height 100%
+        display flex
+        align-items center
+        justify-content center
+        top 50%
+        left 50%
+        transform translate(-50%, -50%)
 
     &__ingredients
       width 100%
@@ -176,7 +243,7 @@ export default Vue.extend({
       grid-column 1 / 2
       display flex
       align-items center
-      justify-content center
+      justify-content space-around
 
     .btn--shuffle
       position absolute

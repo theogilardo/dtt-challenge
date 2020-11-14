@@ -45,6 +45,9 @@
         <button @click="showIngredients" class="btn btn--ingredients">
           Ingredients
         </button>
+        <button @click="showRecommendations" class="btn btn--ingredients">
+          Recommendations
+        </button>
       </div>
       <button @click="shuffleRecipe" class="btn btn--shuffle">
         Suffle
@@ -70,9 +73,6 @@ export default Vue.extend({
     }
   },
   computed: {
-    // recipe() {
-    //   return this.$store.getters.recipe;
-    // },
     recipe() {
       if (this.isRecipeAvailable) {
         return this.$store.getters.recipe;
@@ -91,6 +91,9 @@ export default Vue.extend({
       this.$store.dispatch("fetchRandomRecipe");
     },
     showIngredients() {
+      this.isIngredientsActive = !this.isIngredientsActive;
+    },
+    showRecommendations() {
       this.isIngredientsActive = !this.isIngredientsActive;
     },
   },
@@ -159,7 +162,7 @@ export default Vue.extend({
       &__icon
         width 3rem
         height 2.5rem
-        filter: invert(35%) sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
+        filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
         margin-right 1rem
 
     &__image
@@ -191,7 +194,7 @@ export default Vue.extend({
       grid-column 1 / 2
       display flex
       align-items center
-      justify-content center
+      justify-content space-around
 
     .btn--shuffle
       position absolute
