@@ -54,6 +54,7 @@ export default Vue.extend({
     transform translate(-50%, -50%)
 
   &__link
-    color #2c3e50
+    // color #2c3e50
+    color white
     font-weight bold
 </style>

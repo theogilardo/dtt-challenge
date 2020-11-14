@@ -9,7 +9,7 @@
         Sort A <strong> → </strong> Z
       </button>
       <button @click="sortDescendingOrder" class="btn btn--sort">
-        Sort Z <strong> ← </strong> A
+        Sort Z <strong> → </strong> A
       </button>
     </div>
     <div class="container__recipes">

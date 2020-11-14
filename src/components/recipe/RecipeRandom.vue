@@ -20,6 +20,24 @@
         </div>
       </div>
       <h2 class="container__recipe__name">{{ recipe.strMeal }}</h2>
+      <div class="container__recipe__extra">
+        <div class="container__recipe__extra__subset">
+          <img
+            src="../../assets/category.svg"
+            alt="Cooking Icon"
+            class="container__recipe__extra__icon"
+          />
+          <p>{{ recipe.strCategory }}</p>
+        </div>
+        <div class="container__recipe__extra__subset">
+          <img
+            src="../../assets/flag.svg"
+            alt="Flag icon"
+            class="container__recipe__extra__icon"
+          />
+          <p>{{ recipe.strArea }}</p>
+        </div>
+      </div>
       <p class="container__recipe__info">
         {{ recipe.strInstructions }}
       </p>
@@ -91,7 +109,7 @@ export default Vue.extend({
   &__recipe
     position relative
     display grid
-    grid-template-rows 10rem 1fr 10rem
+    grid-template-rows 10rem 4rem 1fr 10rem
     grid-template-columns 1fr 1fr
     height 50rem
     max-width 100rem
@@ -100,7 +118,7 @@ export default Vue.extend({
     background #eeeeeeCC
 
     &__right-panel
-      grid-row 1 / 4
+      grid-row 1 / 5
       grid-column 2 / 3
 
     &__ingredients
@@ -125,6 +143,25 @@ export default Vue.extend({
     &__ingredient
       margin-bottom 1rem
 
+    &__extra
+      grid-row 2 / 3
+      grid-column 1 / 2
+      width 100%
+      display flex
+      align-items center
+      justify-content space-around
+      margin-bottom 3rem
+
+      &__subset
+        display flex
+        align-items center
+
+      &__icon
+        width 3rem
+        height 2.5rem
+        filter: invert(35%) sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
+        margin-right 1rem
+
     &__image
       width 100%
       height 100%
@@ -141,7 +178,7 @@ export default Vue.extend({
       font-family: 'messenger-texture';
 
     &__info
-      grid-row 2 / 3
+      grid-row 3 / 4
       grid-column 1 / 2
       padding 0 3rem
       display flex
@@ -150,7 +187,7 @@ export default Vue.extend({
       overflow-y auto
 
     &__button
-      grid-row 3 / 4
+      grid-row 4 / 5
       grid-column 1 / 2
       display flex
       align-items center

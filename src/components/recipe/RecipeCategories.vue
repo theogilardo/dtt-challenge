@@ -34,15 +34,13 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 
 .container
-  min-height 100vh
+  height 100vh
   max-width 100rem
   margin 0 auto
   padding 10rem
   display flex
   align-items center
   justify-content center
-  // background-color: #8EC5FC;
-  // background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
   display grid
   grid-template-rows: repeat(3, 1fr)
   grid-template-columns : repeat(3, 1fr)
