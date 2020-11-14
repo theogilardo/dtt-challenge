@@ -94,6 +94,12 @@ export default Vue.extend({
       return JSON.parse(localStorage.getItem("recipeDetails"));
     },
     recipeRecommendations() {
+      if (this.isRecommendationAvailable) {
+        return this.$store.getters.recipeRecommendations;
+      }
+      return JSON.parse(localStorage.getItem("recipeRecommendations"));
+    },
+    isRecommendationAvailable() {
       return this.$store.getters.recipeRecommendations;
     },
     isRecipeDetailsAvailable() {

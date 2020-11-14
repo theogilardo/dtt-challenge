@@ -116,6 +116,12 @@ export default Vue.extend({
       return this.$store.getters.recipe;
     },
     recipeRecommendations() {
+      if (this.isRecommendationAvailable) {
+        return this.$store.getters.recipeRecommendations;
+      }
+      return JSON.parse(localStorage.getItem("recipeRecommendations"));
+    },
+    isRecommendationAvailable() {
       return this.$store.getters.recipeRecommendations;
     },
   },
