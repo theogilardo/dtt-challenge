@@ -62,9 +62,10 @@ export default Vue.extend({
   background-position center
   background-size cover
   background-color: #eee;
-  // background-color: #8EC5FC;
-  // background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
   min-height 100vh
+
+  @media only screen and (max-width: 760px)
+    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
 
 html
   font-size: 62.5%; // 1rem = 10px

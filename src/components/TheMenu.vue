@@ -13,28 +13,40 @@
       </button>
     </div>
     <div class="container__recipes">
-      <div
+      <router-link
         v-for="recipe in recipes"
         :key="recipe.idMeal"
         class="container__recipe"
+        :to="{ name: 'recipe-details', params: { id: recipe.idMeal } }"
+        @click.native="storeRecipeDetails(recipe)"
       >
-        <router-link
-          :to="{ name: 'recipe-details', params: { id: recipe.idMeal } }"
-          @click.native="storeRecipeDetails(recipe)"
-          class="container__recipe__link"
-        >
-          <img
-            :src="recipe.strMealThumb"
-            alt="Recipe Photo"
-            class="container__recipe__photo"
-          />
+        <img
+          :src="recipe.strMealThumb"
+          alt="Recipe Photo"
+          class="container__recipe__photo"
+        />
+        <div class="container__recipe__box">
           <h3 class="container__recipe__name">{{ recipe.strMeal }}</h3>
           <div class="container__recipe__info">
-            <p>{{ recipe.strArea }}</p>
-            <p>{{ recipe.strCategory }}</p>
+            <div class="container__recipe__sub-box">
+              <img
+                src="../assets/category.svg"
+                alt="Cooking Icon"
+                class="container__recipe__icon"
+              />
+              <p>{{ recipe.strCategory }}</p>
+            </div>
+            <div class="container__recipe__sub-box">
+              <img
+                src="../assets/flag.svg"
+                alt="Cooking Icon"
+                class="container__recipe__icon"
+              />
+              <p>{{ recipe.strArea }}</p>
+            </div>
           </div>
-        </router-link>
-      </div>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -74,8 +86,11 @@ export default Vue.extend({
   margin 3rem 1rem 0 1rem
 
 .container
-  height 100vh
+  min-height 100vh
   padding-top 3.5rem
+
+  // @media only screen and (max-width: 760px)
+  //   min-height 100vh
 
   &__header
     max-width 80rem
@@ -86,7 +101,6 @@ export default Vue.extend({
       // font-family: 'Paytone One', sans-serif;
       // font-family: 'Abril Fatface', cursive;
       font-family: 'messenger-texture';
-      // font-size 8rem
       font-size 6rem
 
     &__sub-text
@@ -94,7 +108,6 @@ export default Vue.extend({
       padding 0 15rem
       font-family: 'Montserrat Alternates', sans-serif;
       // font-family: 'Raleway', sans-serif;
-      // color: #a9a9a9;
 
   &__recipes
     max-width 120rem
@@ -105,7 +118,13 @@ export default Vue.extend({
     align-items center
     overflow-x auto
 
+    @media only screen and (max-width: 760px)
+      overflow-x visible
+      overflow-y auto
+      flex-direction column
+
   &__recipe
+    position relative
     padding: 3.5rem 1rem;
     margin-bottom 3rem
     height: 25rem;
@@ -113,14 +132,19 @@ export default Vue.extend({
     margin: 0 2rem;
     background: #ffffffb3;
     border-radius: 15px;
+    overflow hidden
+    text-decoration none
+    color #2c3e50
     transition all .4s
+
+    @media only screen and (max-width: 760px)
+      width 85%
+      flex: 0 0 18rem;
+      margin-bottom 3rem
+      color white
 
     &:hover
       transform translateY(-15px)
-
-    &__link
-      text-decoration none
-      color #2c3e50
 
     &__photo
       width 10rem
@@ -129,10 +153,46 @@ export default Vue.extend({
       object-fit cover
       margin-bottom 1.5rem
 
+      @media only screen and (max-width: 760px)
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        border-radius 0
+        margin-bottom 0
+
+    &__box
+      @media only screen and (max-width: 760px)
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #33333366
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+    &__sub-box
+      display flex
+      align-items center
+      justify-content space-around
+
+    &__icon
+      width 2rem
+      height 2rem
+      filter: invert(35%) sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
+      margin-right 1rem
+
     &__name
       margin-bottom 1rem
       border-top: 1px solid #dedede;
       padding-top: 1.5rem;
+
+      @media only screen and (max-width: 760px)
+        border-top none
+        font-size 5rem
 
     &__info
       display flex
