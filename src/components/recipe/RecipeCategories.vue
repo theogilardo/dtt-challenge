@@ -42,9 +42,15 @@ export default Vue.extend({
   align-items center
   justify-content center
   display grid
-  grid-template-rows: repeat(3, 1fr)
-  grid-template-columns : repeat(3, 1fr)
+  grid-template-columns repeat(3, 1fr)
   gap 2rem
+
+  @media only screen and (max-width: 770px)
+    grid-template-columns 1fr 1fr
+
+  @media only screen and (max-width: 600px)
+    grid-template-columns 1fr
+
 
   &__category
     position relative
@@ -53,12 +59,11 @@ export default Vue.extend({
     justify-content center
     overflow hidden
     border-radius 15px
-    height 100%
+    height 20rem
     transition all .5s
 
     &:hover
       transform scale(1.05)
-
 
     &__name
       position absolute
@@ -72,6 +77,9 @@ export default Vue.extend({
       background #5a5a5a3d
       color white
       z-index 10
+      font-size 2.5rem
+
+      // @media only screen and (max-width: 770px)
 
 
     &__image
