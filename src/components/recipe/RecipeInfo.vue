@@ -86,10 +86,11 @@ export default Vue.extend({
       type: Boolean,
       default: false,
     },
-    recipe: {
-      type: Object,
-      required: true,
-    },
+  },
+  created() {
+    if (!this.isRecipeInLocalStorage && this.hasShuffle) {
+      this.$store.dispatch("fetchRandomRecipe");
+    }
   },
   data() {
     return {
@@ -98,6 +99,33 @@ export default Vue.extend({
     };
   },
   computed: {
+    recipe() {
+      if (this.hasShuffle) {
+        return this.recipeRandom;
+      }
+      return this.recipeSelected;
+    },
+    recipeRandom() {
+      if (this.isRecipeAvailable) {
+        return this.isRecipeAvailable;
+      }
+      return JSON.parse(localStorage.getItem("recipeRandom"));
+    },
+    isRecipeAvailable() {
+      return this.$store.getters.recipe;
+    },
+    isRecipeInLocalStorage() {
+      return JSON.parse(localStorage.getItem("recipeRandom"));
+    },
+    recipeSelected() {
+      if (this.isRecipeSelectedAvailable) {
+        return this.$store.getters.recipeSelected;
+      }
+      return JSON.parse(localStorage.getItem("recipeSelected"));
+    },
+    isRecipeSelectedAvailable() {
+      return this.$store.getters.recipeSelected;
+    },
     recipeRecommendations() {
       if (this.isRecommendationAvailable) {
         return this.isRecommendationAvailable;
