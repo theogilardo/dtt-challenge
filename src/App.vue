@@ -64,26 +64,38 @@ export default Vue.extend({
   background-color: #eee;
   min-height 100vh
 
-  @media only screen and (max-width: 760px)
+  @media only screen and (max-width: 770px)
     background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
 
 html
-  font-size: 62.5%; // 1rem = 10px
+  font-size: 62.5% // 1rem = 10px
 
   h1
-    font-size: 4.6rem;
+    font-size: 4.6rem
 
   h2
-    font-size: 2.2rem;
+    font-size: 2.2rem
 
   h3
-    font-size: 1.6rem;
+    font-size: 1.6rem
+
+    @media only screen and (max-width: 770px)
+      font-size: 3.5rem
+
+    @media only screen and (max-width: 400px)
+      font-size: 2.5rem
 
   h4
-    font-size: 1rem;
+    font-size: 1rem
 
   p
-    font-size: 1.3rem;
+    font-size: 1.3rem
+
+    @media only screen and (max-width: 770px)
+      font-size: 2rem
+
+    @media only screen and (max-width: 400px)
+      font-size: 1.5rem
 
 .btn
   border none

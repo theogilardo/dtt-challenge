@@ -26,7 +26,7 @@
           class="container__recipe__photo"
         />
         <div class="container__recipe__box">
-          <h3 class="container__recipe__name">{{ recipe.strMeal }}</h3>
+          <h3 class="container__recipe__name">{{ recipe.strMeal | reduce }}</h3>
           <div class="container__recipe__info">
             <div class="container__recipe__sub-box">
               <img
@@ -89,7 +89,7 @@ export default Vue.extend({
   min-height 100vh
   padding-top 3.5rem
 
-  // @media only screen and (max-width: 760px)
+  // @media only screen and (max-width: 770px)
   //   min-height 100vh
 
   &__header
@@ -102,6 +102,13 @@ export default Vue.extend({
       // font-family: 'Abril Fatface', cursive;
       font-family: 'messenger-texture';
       font-size 6rem
+      padding 0 2rem
+
+      @media only screen and (max-width: 600px)
+        font-size: 4.5rem
+
+      @media only screen and (max-width: 400px)
+        font-size: 4rem
 
     &__sub-text
       margin-top 2.5rem
@@ -118,7 +125,7 @@ export default Vue.extend({
     align-items center
     overflow-x auto
 
-    @media only screen and (max-width: 760px)
+    @media only screen and (max-width: 770px)
       overflow-x visible
       overflow-y auto
       flex-direction column
@@ -137,10 +144,10 @@ export default Vue.extend({
     color #2c3e50
     transition all .4s
 
-    @media only screen and (max-width: 760px)
+    @media only screen and (max-width: 770px)
       width 85%
-      flex: 0 0 18rem;
-      margin-bottom 3rem
+      flex: 0 0 16rem;
+      margin-bottom 2.5rem
       color white
 
     &:hover
@@ -153,7 +160,7 @@ export default Vue.extend({
       object-fit cover
       margin-bottom 1.5rem
 
-      @media only screen and (max-width: 760px)
+      @media only screen and (max-width: 770px)
         position absolute
         top 0
         left 0
@@ -163,7 +170,7 @@ export default Vue.extend({
         margin-bottom 0
 
     &__box
-      @media only screen and (max-width: 760px)
+      @media only screen and (max-width: 770px)
         position: absolute;
         top: 0;
         left: 0;
@@ -190,9 +197,8 @@ export default Vue.extend({
       border-top: 1px solid #dedede;
       padding-top: 1.5rem;
 
-      @media only screen and (max-width: 760px)
+      @media only screen and (max-width: 770px)
         border-top none
-        font-size 5rem
 
     &__info
       display flex
