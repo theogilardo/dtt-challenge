@@ -17,8 +17,8 @@
         v-for="recipe in recipes"
         :key="recipe.idMeal"
         class="container__recipe"
-        :to="{ name: 'recipe-details', params: { id: recipe.idMeal } }"
-        @click.native="storeRecipeDetails(recipe)"
+        :to="{ name: 'recipe-selected', params: { id: recipe.idMeal } }"
+        @click.native="storeRecipeSelected(recipe)"
       >
         <img
           :src="recipe.strMealThumb"
@@ -66,9 +66,9 @@ export default Vue.extend({
     },
   },
   methods: {
-    storeRecipeDetails(recipe: Recipe) {
+    storeRecipeSelected(recipe: Recipe) {
       this.$store.dispatch("storeRecipeRecommendations", recipe);
-      this.$store.dispatch("storeRecipeDetails", recipe);
+      this.$store.dispatch("storeRecipeSelected", recipe);
     },
     sortAscendingOrder() {
       this.$store.commit("sortAscendingOrder");

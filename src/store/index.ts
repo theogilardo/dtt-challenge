@@ -12,7 +12,7 @@ export default new Vuex.Store({
   state: {
     recipe: null,
     recipeRecommendations: null,
-    recipeDetails: null,
+    recipeSelected: null,
     recipes: [],
     categories: [],
     sortAscending: false,
@@ -22,8 +22,8 @@ export default new Vuex.Store({
     recipe(state) {
       return state.recipe;
     },
-    recipeDetails(state) {
-      return state.recipeDetails;
+    recipeSelected(state) {
+      return state.recipeSelected;
     },
     recipeRecommendations(state) {
       return state.recipeRecommendations;
@@ -52,8 +52,8 @@ export default new Vuex.Store({
     storeRecipe(state, recipe) {
       state.recipe = recipe;
     },
-    storeRecipeDetails(state, recipe) {
-      state.recipeDetails = recipe;
+    storeRecipeSelected(state, recipe) {
+      state.recipeSelected = recipe;
     },
     storeRecipeRecommendations(state, recommendations) {
       state.recipeRecommendations = recommendations;
@@ -66,10 +66,10 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    storeRecipeDetails({ commit }, recipe) {
-      commit("storeRecipeDetails", recipe);
-      localStorage.removeItem("recipeDetails");
-      localStorage.setItem("recipeDetails", JSON.stringify(recipe));
+    storeRecipeSelected({ commit }, recipe) {
+      commit("storeRecipeSelected", recipe);
+      localStorage.removeItem("recipeSelected");
+      localStorage.setItem("recipeSelected", JSON.stringify(recipe));
     },
     async storeRecipeRecommendations({ commit }, recipe) {
       const response = await axios.get(
@@ -91,7 +91,6 @@ export default new Vuex.Store({
       const recipes: Recipe[] = response.data.meals;
 
       // var map: { [key: string]: string } = {};
-      console.log(recipes);
       recipes.forEach((recipe: Recipe) => {
         recipe.ingredients = [];
         for (let j = 1; j <= 20; j++) {
@@ -134,8 +133,6 @@ export default new Vuex.Store({
           );
         }
       }
-
-      console.log(recipe);
 
       localStorage.removeItem("recipeRandom");
       localStorage.setItem("recipeRandom", JSON.stringify(recipe));

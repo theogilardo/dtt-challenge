@@ -3,7 +3,7 @@ import VueRouter, { RouteConfig } from "vue-router";
 import TheMenu from "../components/TheMenu.vue";
 import RecipeCategories from "../components/recipe/RecipeCategories.vue";
 import RecipeRandom from "../components/recipe/RecipeRandom.vue";
-import RecipeDetails from "../components/recipe/RecipeDetails.vue";
+import RecipeSelected from "../components/recipe/RecipeSelected.vue";
 
 Vue.use(VueRouter);
 
@@ -15,8 +15,8 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/recipe/:id",
-    name: "recipe-details",
-    component: RecipeDetails,
+    name: "recipe-selected",
+    component: RecipeSelected,
   },
   {
     path: "/categories",

@@ -64,10 +64,13 @@
         <button @click="showIngredients" class="btn btn--ingredients">
           Ingredients
         </button>
-        <button @click="showRecommendations" class="btn">
+        <button @click="showRecommendations" class="btn btn--ingredients">
           Recommendations
         </button>
       </div>
+      <button v-if="hasShuffle" @click="shuffleRecipe" class="btn btn--shuffle">
+        Shuffle
+      </button>
     </div>
   </div>
 </template>
@@ -76,10 +79,18 @@
 // @ts-nocheck
 
 import Vue from "vue";
-import Recipe from "../interface/RecipeApi";
-
 export default Vue.extend({
-  name: "RecipeDetails",
+  name: "RecipeInfo",
+  props: {
+    hasShuffle: {
+      type: Boolean,
+      default: false,
+    },
+    recipe: {
+      type: Object,
+      required: true,
+    },
+  },
   data() {
     return {
       areIngredientsActive: false,
@@ -87,26 +98,20 @@ export default Vue.extend({
     };
   },
   computed: {
-    recipe() {
-      if (this.isRecipeDetailsAvailable) {
-        return this.$store.getters.recipeDetails;
-      }
-      return JSON.parse(localStorage.getItem("recipeDetails"));
-    },
     recipeRecommendations() {
       if (this.isRecommendationAvailable) {
-        return this.$store.getters.recipeRecommendations;
+        return this.isRecommendationAvailable;
       }
       return JSON.parse(localStorage.getItem("recipeRecommendations"));
     },
     isRecommendationAvailable() {
       return this.$store.getters.recipeRecommendations;
     },
-    isRecipeDetailsAvailable() {
-      return this.$store.getters.recipeDetails;
-    },
   },
   methods: {
+    shuffleRecipe() {
+      this.$store.dispatch("fetchRandomRecipe");
+    },
     showIngredients() {
       this.areIngredientsActive = !this.areIngredientsActive;
     },
@@ -141,7 +146,6 @@ export default Vue.extend({
       grid-row 1 / 5
       grid-column 2 / 3
 
-    // REFACTOR THIS !!!
     &__recommendations
       width 100%
       height 100%
@@ -157,7 +161,7 @@ export default Vue.extend({
       border-radius 10px
       overflow hidden
       margin 1rem
-      height 15rem
+      height 11rem
       position relative
       transition all .5s
 
@@ -221,7 +225,7 @@ export default Vue.extend({
       &__icon
         width 3rem
         height 2.5rem
-        filter: invert(35%) sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
+        filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
         margin-right 1rem
 
     &__image
