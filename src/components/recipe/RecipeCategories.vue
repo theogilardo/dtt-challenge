@@ -34,7 +34,7 @@ export default Vue.extend({
 <style lang="stylus" scoped>
 
 .container
-  height 100vh
+  min-height 100vh
   max-width 100rem
   margin 0 auto
   padding 10rem
@@ -48,9 +48,8 @@ export default Vue.extend({
   @media only screen and (max-width: 770px)
     grid-template-columns 1fr 1fr
 
-  @media only screen and (max-width: 600px)
+  @media only screen and (max-width: 570px)
     grid-template-columns 1fr
-
 
   &__category
     position relative
@@ -59,8 +58,11 @@ export default Vue.extend({
     justify-content center
     overflow hidden
     border-radius 15px
-    height 20rem
+    height 15rem
     transition all .5s
+
+    @media only screen and (max-width: 770px)
+      height 18rem
 
     &:hover
       transform scale(1.05)
@@ -77,10 +79,7 @@ export default Vue.extend({
       background #5a5a5a3d
       color white
       z-index 10
-      font-size 2.5rem
-
-      // @media only screen and (max-width: 770px)
-
+      font-size 2rem
 
     &__image
       object-fit cover

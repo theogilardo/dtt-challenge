@@ -64,9 +64,6 @@ export default Vue.extend({
   background-color: #eee;
   min-height 100vh
 
-  @media only screen and (max-width: 770px)
-    background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
-
 html
   font-size: 62.5% // 1rem = 10px
 
@@ -80,10 +77,10 @@ html
     font-size: 1.6rem
 
     @media only screen and (max-width: 770px)
-      font-size: 3.5rem
+      font-size: 3rem
 
     @media only screen and (max-width: 400px)
-      font-size: 2.5rem
+      font-size: 2.2rem
 
   h4
     font-size: 1rem
