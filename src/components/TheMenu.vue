@@ -105,10 +105,13 @@ export default Vue.extend({
       padding 0 2rem
 
       @media only screen and (max-width: 600px)
-        font-size: 3rem
+
+        font-size: 5rem
+      @media only screen and (max-width: 460px)
+        font-size: 4rem
 
       @media only screen and (max-width: 400px)
-        font-size: 2.5rem
+        font-size: 3rem
 
     &__sub-text
       margin-top 2.5rem

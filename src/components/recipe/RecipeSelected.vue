@@ -1,6 +1,6 @@
 <template>
   <div>
-    <recipe-info :recipe="recipe"></recipe-info>
+    <recipe-info></recipe-info>
   </div>
 </template>
 
@@ -14,17 +14,6 @@ export default Vue.extend({
   name: "RecipeSelected",
   components: {
     RecipeInfo,
-  },
-  computed: {
-    recipe() {
-      if (this.isRecipeSelectedAvailable) {
-        return this.$store.getters.recipeSelected;
-      }
-      return JSON.parse(localStorage.getItem("recipeSelected"));
-    },
-    isRecipeSelectedAvailable() {
-      return this.$store.getters.recipeSelected;
-    },
   },
 });
 </script>

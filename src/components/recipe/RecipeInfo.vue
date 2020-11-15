@@ -38,6 +38,7 @@
           </div>
         </div>
       </div>
+      <div class="test"></div>
       <h2 class="container__recipe__name">{{ recipe.strMeal }}</h2>
       <div class="container__recipe__extra">
         <div class="container__recipe__extra__subset">
@@ -152,12 +153,27 @@ export default Vue.extend({
 
 <style lang="stylus" scoped>
 
+.test
+  @media only screen and (max-width: 820px)
+    // position relative
+    font-size 2rem
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #33333380;
+    z-index 5
+
 .container
   min-height 100vh
   display flex
   align-items center
   justify-content center
   padding-top 10px
+
+  @media only screen and (max-width: 820px)
+    color white
 
   &__recipe
     position relative
@@ -167,12 +183,19 @@ export default Vue.extend({
     height 50rem
     max-width 100rem
     border-radius: 10px;
+    margin 0 5rem
     overflow: hidden;
     background #eeeeeeCC
 
     &__right-panel
       grid-row 1 / 5
       grid-column 2 / 3
+
+      @media only screen and (max-width: 820px)
+        position relative
+        z-index 5
+        grid-column 1 / 3
+
 
     &__recommendations
       width 100%
@@ -246,6 +269,11 @@ export default Vue.extend({
       justify-content space-around
       margin-bottom 3rem
 
+      @media only screen and (max-width: 820px)
+        position relative
+        z-index 5
+        grid-column 1 / 3
+
       &__subset
         display flex
         align-items center
@@ -271,6 +299,11 @@ export default Vue.extend({
       justify-content center
       font-family: 'messenger-texture';
 
+      @media only screen and (max-width: 820px)
+        position relative
+        z-index 5
+        grid-column 1 / 3
+
     &__info
       grid-row 3 / 4
       grid-column 1 / 2
@@ -280,12 +313,22 @@ export default Vue.extend({
       justify-content center
       overflow-y auto
 
+      @media only screen and (max-width: 820px)
+        position relative
+        z-index 5
+        grid-column 1 / 3
+
     &__button
       grid-row 4 / 5
       grid-column 1 / 2
       display flex
       align-items center
       justify-content space-around
+
+      @media only screen and (max-width: 820px)
+        position relative
+        z-index 5
+        grid-column 1 / 3
 
     .btn--shuffle
       position absolute
