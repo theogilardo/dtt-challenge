@@ -38,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div class="test"></div>
+      <div class="background"></div>
       <h2 class="container__recipe__name">{{ recipe.strMeal }}</h2>
       <div class="container__recipe__extra">
         <div class="container__recipe__extra__subset">
@@ -154,9 +154,11 @@ export default Vue.extend({
       this.$store.dispatch("fetchRandomRecipe");
     },
     showIngredients() {
+      this.areRecommendationsActive = false;
       this.areIngredientsActive = !this.areIngredientsActive;
     },
     showRecommendations() {
+      this.areIngredientsActive = false;
       this.areRecommendationsActive = !this.areRecommendationsActive;
     },
   },
@@ -164,16 +166,6 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus" scoped>
-
-.test
-  @media only screen and (max-width: 820px)
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #33333380;
-    z-index 5
 
 .container
   min-height 100vh
@@ -221,7 +213,7 @@ export default Vue.extend({
       align-items center
       justify-content center
       flex-direction column
-      background-image: linear-gradient(132deg, #F4D03F80 0%, #16A08580 100%);
+      background-image: linear-gradient(132deg, #F4D03FCC 0%, #16A085CC 100%);
       padding 4rem
       color white
 
@@ -262,7 +254,7 @@ export default Vue.extend({
       display flex
       align-items center
       justify-content center
-      background-image: linear-gradient(132deg, #F4D03F80 0%, #16A08580 100%);
+      background-image: linear-gradient(132deg, #F4D03FCC 0%, #16A085CC 100%);
       color white
 
       div
@@ -335,17 +327,6 @@ export default Vue.extend({
       justify-content center
       overflow-y auto
 
-      // &::after
-      //   content: "";
-      //   position: absolute;
-      //   z-index: 1;
-      //   bottom: 0;
-      //   right: 0;
-      //   bottom: 15px;
-      //   background: linear-gradient(90deg, rgba(212,212,212,0) 0%, rgba(255,255,255,0.53125) 51%, rgba(255,255,255,1) 100%);
-      //   width: 100%;
-      //   height 10%
-
       @media only screen and (max-width: 820px)
         position relative
         z-index 5
@@ -393,4 +374,14 @@ export default Vue.extend({
 
       &:hover
         transform translateY(-3px)
+
+.background
+  @media only screen and (max-width: 820px)
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #33333380;
+    z-index 5
 </style>

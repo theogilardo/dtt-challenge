@@ -80,7 +80,7 @@ html
     font-size: 1rem
 
   p
-    font-size: 1.3rem
+    font-size: 1.4rem
 
     @media only screen and (max-width: 820px)
       font-size: 1.8rem
