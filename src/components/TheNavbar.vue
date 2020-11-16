@@ -1,7 +1,8 @@
 <template>
   <div class="navbar">
-    <router-link class="navbar__logo navbar__link" to="/">
-      <img class="navbar__img" src="../assets/chef.png" alt="Chef hats" />
+    <!-- <router-link class="navbar__logo navbar__link" to="/"> -->
+    <router-link class="navbar__link" to="/">
+      <img class="navbar__img" src="../assets/logo.png" alt="Chef hats" />
     </router-link>
     <div>
       <router-link class="navbar__link" to="/categories"
@@ -32,21 +33,24 @@ export default Vue.extend({
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding 0 4rem
+  padding 4rem 6rem
+
+  @media only screen and (max-width: 350px)
+    padding 4rem
 
   div > *:last-child
     margin-left 2rem
 
-  &__logo
-    width 30px
-    height 30px
-    border-radius 50%
-    background #EE5354
-    position relative
+  // &__logo
+  //   width 40px
+  //   height 40px
+  //   border-radius 50%
+  //   background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
+  //   position relative
 
   &__img
-    width 15px
-    height 15px
+    width 35px
+    height 35px
     object-fit cover
     position absolute
     top 50%
@@ -54,7 +58,7 @@ export default Vue.extend({
     transform translate(-50%, -50%)
 
   &__link
-    // color #2c3e50
     color white
     font-weight bold
+    position relative
 </style>

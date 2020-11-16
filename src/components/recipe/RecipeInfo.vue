@@ -168,7 +168,7 @@ export default Vue.extend({
 .test
   @media only screen and (max-width: 820px)
     // position relative
-    font-size 2rem
+    // font-size 2rem
     position: absolute;
     top: 0;
     left: 0;
@@ -199,12 +199,12 @@ export default Vue.extend({
     overflow: hidden;
     background #eeeeeeCC
 
-    @media only screen and (max-width: 700px)
+    @media only screen and (max-width: 820px)
+      margin 0 2rem
       height 55rem
       grid-template-rows 14rem 4rem 1fr 10rem
 
     @media only screen and (max-width: 500px)
-      height 60rem
       grid-template-rows 15rem 4rem 1fr 10rem
 
     &__right-panel
@@ -301,7 +301,7 @@ export default Vue.extend({
       &__icon
         width 3rem
         height 2.5rem
-        filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
+        // filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
         margin-right 1rem
 
     &__image
@@ -369,7 +369,7 @@ export default Vue.extend({
       &__icon
         width 3rem
         height 3rem
-        filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%)
+        // filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%)
 
     .btn--shuffle
       position absolute
@@ -382,9 +382,11 @@ export default Vue.extend({
         display none
 
     .btn--ingredients
-      color #ee5354
-      border 1.5px solid #ee5354
-      background white
+      // color #16A085
+      // border 1.5px solid #16A085
+      background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
+      color white
+      // background white
 
       &:hover
         transform translateY(-3px)

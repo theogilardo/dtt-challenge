@@ -13,40 +13,44 @@
       </button>
     </div>
     <div class="container__recipes">
-      <router-link
-        v-for="recipe in recipes"
-        :key="recipe.idMeal"
-        class="container__recipe"
-        :to="{ name: 'recipe-selected', params: { id: recipe.idMeal } }"
-        @click.native="storeRecipeSelected(recipe)"
-      >
-        <img
-          :src="recipe.strMealThumb"
-          alt="Recipe Photo"
-          class="container__recipe__photo"
-        />
-        <div class="container__recipe__box">
-          <h3 class="container__recipe__name">{{ recipe.strMeal | reduce }}</h3>
-          <div class="container__recipe__info">
-            <div class="container__recipe__sub-box">
-              <img
-                src="../assets/category.svg"
-                alt="Cooking Icon"
-                class="container__recipe__icon"
-              />
-              <p>{{ recipe.strCategory }}</p>
-            </div>
-            <div class="container__recipe__sub-box">
-              <img
-                src="../assets/flag.svg"
-                alt="Cooking Icon"
-                class="container__recipe__icon"
-              />
-              <p>{{ recipe.strArea }}</p>
+      <div class="container__media">
+        <router-link
+          v-for="recipe in recipes"
+          :key="recipe.idMeal"
+          class="container__recipe"
+          :to="{ name: 'recipe-selected', params: { id: recipe.idMeal } }"
+          @click.native="storeRecipeSelected(recipe)"
+        >
+          <img
+            :src="recipe.strMealThumb"
+            alt="Recipe Photo"
+            class="container__recipe__photo"
+          />
+          <div class="container__recipe__box">
+            <h3 class="container__recipe__name">
+              {{ recipe.strMeal | reduce }}
+            </h3>
+            <div class="container__recipe__info">
+              <div class="container__recipe__sub-box">
+                <img
+                  src="../assets/category.svg"
+                  alt="Cooking Icon"
+                  class="container__recipe__icon"
+                />
+                <p>{{ recipe.strCategory }}</p>
+              </div>
+              <div class="container__recipe__sub-box">
+                <img
+                  src="../assets/flag.svg"
+                  alt="Cooking Icon"
+                  class="container__recipe__icon"
+                />
+                <p>{{ recipe.strArea }}</p>
+              </div>
             </div>
           </div>
-        </div>
-      </router-link>
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -119,14 +123,41 @@ export default Vue.extend({
       font-family: 'Montserrat Alternates', sans-serif;
       // font-family: 'Raleway', sans-serif;
 
+
   &__recipes
+    position relative
     max-width 120rem
-    padding-top 6rem
-    margin 0 auto
-    padding-top 3rem
+    // padding-top 6rem
+    margin 6rem auto 0 auto
+
+    &::after
+      // content: "";
+      // position: absolute;
+      // top: 0;
+      // right: 2rem;
+      // width: 10%;
+      // height: 100%;
+      // background: #fff;
+      // z-index: 20;
+      // opacity: .7;
+      content: "";
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 15px;
+      background: linear-gradient(90deg, rgba(212,212,212,0) 0%, rgba(255,255,255,0.53125) 51%, rgba(255,255,255,1) 100%);
+      width: 10%;
+      height 100%
+
+
+  &__media
     display flex
     align-items center
-    overflow-x auto
+    white-space: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    position: relative;
 
     @media only screen and (max-width: 770px)
       overflow-x visible
@@ -152,6 +183,7 @@ export default Vue.extend({
       flex: 0 0 16rem;
       margin-bottom 2.5rem
       color white
+      border: 3px solid white;
 
     &:hover
       transform translateY(-15px)
@@ -192,7 +224,7 @@ export default Vue.extend({
     &__icon
       width 2rem
       height 2rem
-      filter: invert(35%) sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
+      // filter: invert(35%) sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
       margin-right 1rem
 
     &__name

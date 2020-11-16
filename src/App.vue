@@ -88,8 +88,8 @@ html
   p
     font-size: 1.3rem
 
-    @media only screen and (max-width: 770px)
-      font-size: 2rem
+    @media only screen and (max-width: 820px)
+      font-size: 1.8rem
 
     @media only screen and (max-width: 400px)
       font-size: 1.5rem
@@ -99,7 +99,9 @@ html
   padding 1rem 1.5rem
   border-radius 10px
   color white
-  background #ee5354CC
+  // background #ee5354CC
+  background-color: #F4D03F;
+  background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
   text-transform uppercase
   font-weight bold
   cursor pointer

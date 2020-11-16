@@ -14,8 +14,8 @@ export default Vue.extend({});
 <style lang="stylus" scoped>
 
 footer
-  position fixed
-  bottom 0
+  // position fixed
+  // bottom 0
   width 100%
   height 3.5rem
   background #33333380
