@@ -90,9 +90,7 @@
 
 <script lang="ts">
 // @ts-nocheck
-
-import Vue from "vue";
-export default Vue.extend({
+export default {
   name: "RecipeInfo",
   props: {
     hasShuffle: {
@@ -162,7 +160,7 @@ export default Vue.extend({
       this.areRecommendationsActive = !this.areRecommendationsActive;
     },
   },
-});
+};
 </script>
 
 <style lang="stylus" scoped>

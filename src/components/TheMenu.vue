@@ -56,11 +56,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { mapActions } from "vuex";
 import Recipe from "../interface/RecipeApi";
 
-export default Vue.extend({
-  name: "Menu",
+export default {
+  name: "TheMenu",
   created() {
     this.$store.dispatch("fetchRecipes");
   },
@@ -81,7 +81,7 @@ export default Vue.extend({
       this.$store.commit("sortDescendingOrder");
     },
   },
-});
+};
 </script>
 
 <style scoped lang="stylus">

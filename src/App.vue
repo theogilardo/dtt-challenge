@@ -1,26 +1,27 @@
 <template>
   <div id="app">
     <the-navbar></the-navbar>
-    <router-view />
+    <router-view><router-view />
     <the-footer></the-footer>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
 import TheNavbar from "./components/TheNavbar.vue";
 import TheFooter from "./components/TheFooter.vue";
 
-export default Vue.extend({
+export default {
   name: "App",
   components: {
     TheNavbar,
     TheFooter,
   },
-});
+};
 </script>
 
 <style lang="stylus">
+
+// Fonts
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400&display=swap');
 
 @font-face {
@@ -38,6 +39,7 @@ export default Vue.extend({
   font-family: messenger-texture;
 }
 
+// Set Up
 *,
 *::before,
 *::after

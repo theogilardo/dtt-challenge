@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <router-link class="navbar__link" to="/">
-      <img class="navbar__img" src="../assets/logo.png" alt="Chef hats" />
+      <img class="navbar__img" src="../assets/logo.png" alt="Logo" />
     </router-link>
     <div>
       <router-link class="navbar__link" to="/categories">
@@ -19,10 +19,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
+export default {
   name: "TheNavbar",
-});
+};
 </script>
 
 <style lang="stylus" scoped>
@@ -60,6 +59,7 @@ export default Vue.extend({
     background #eeeeeeE6
     padding 1rem
     border-radius 10px
+    transition all .5s
 
     &:hover
       transform translateY(-3px)

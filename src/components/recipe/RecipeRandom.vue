@@ -6,16 +6,14 @@
 
 <script lang="ts">
 // @ts-nocheck
-
-import Vue from "vue";
 import RecipeInfo from "./RecipeInfo.vue";
 
-export default Vue.extend({
+export default {
   name: "RecipeRandom",
   components: {
     RecipeInfo,
   },
-});
+};
 </script>
 
 <style lang="stylus" scoped></style>

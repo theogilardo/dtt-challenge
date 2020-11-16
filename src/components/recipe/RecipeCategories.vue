@@ -16,8 +16,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-export default Vue.extend({
+export default {
   name: "RecipeCategories",
   created() {
     this.$store.dispatch("fetchCategories");
@@ -27,7 +26,7 @@ export default Vue.extend({
       return this.$store.getters.categories;
     },
   },
-});
+};
 </script>
 
 <style lang="stylus" scoped>
