@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <the-navbar></the-navbar>
-    <!-- <transition name="slide-fade"> -->
     <router-view />
-    <!-- </transition> -->
     <the-footer></the-footer>
   </div>
 </template>
@@ -23,10 +21,6 @@ export default Vue.extend({
 </script>
 
 <style lang="stylus">
-
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400&display=swap');
 
 @font-face {
@@ -99,10 +93,7 @@ html
   padding 1rem 1.5rem
   border-radius 10px
   color white
-  // background #ee5354CC
-  background-color: #F4D03F;
   background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
-  text-transform uppercase
   font-weight bold
   cursor pointer
   transition all .5s
@@ -120,14 +111,4 @@ button:focus
 
 input:focus
   outline 0
-
-.slide-fade-enter-active
-  transition: all .8s ease;
-
-.slide-fade-leave-active
-  transition: all .8s ease
-
-.slide-fade-enter, .slide-fade-leave-to
-  transform: translateY(25px);
-  opacity: 0;
 </style>

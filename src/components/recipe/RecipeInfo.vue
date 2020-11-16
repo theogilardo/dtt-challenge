@@ -18,8 +18,8 @@
             class="container__recipe__recommendation"
           >
             <img
-              class="container__recipe__recommendation__photo"
               :src="recipe.strMealThumb"
+              class="container__recipe__recommendation__photo"
               alt=""
             />
             <p class="container__recipe__recommendation__name">
@@ -167,8 +167,6 @@ export default Vue.extend({
 
 .test
   @media only screen and (max-width: 820px)
-    // position relative
-    // font-size 2rem
     position: absolute;
     top: 0;
     left: 0;
@@ -216,7 +214,6 @@ export default Vue.extend({
         z-index 10
         grid-column 1 / 3
 
-
     &__recommendations
       width 100%
       height 100%
@@ -224,7 +221,7 @@ export default Vue.extend({
       align-items center
       justify-content center
       flex-direction column
-      background #2c3e50D9
+      background-image: linear-gradient(132deg, #F4D03F80 0%, #16A08580 100%);
       padding 4rem
       color white
 
@@ -265,7 +262,7 @@ export default Vue.extend({
       display flex
       align-items center
       justify-content center
-      background #2c3e50D9
+      background-image: linear-gradient(132deg, #F4D03F80 0%, #16A08580 100%);
       color white
 
       div
@@ -301,7 +298,6 @@ export default Vue.extend({
       &__icon
         width 3rem
         height 2.5rem
-        // filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
         margin-right 1rem
 
     &__image
@@ -313,7 +309,6 @@ export default Vue.extend({
 
       @media only screen and (max-width: 820px)
         grid-column 1 / 3
-
 
     &__name
       grid-row 1 / 2
@@ -331,6 +326,7 @@ export default Vue.extend({
         grid-column 1 / 3
 
     &__info
+      position relative
       grid-row 3 / 4
       grid-column 1 / 2
       padding 0 3rem
@@ -338,6 +334,17 @@ export default Vue.extend({
       align-items flex-start
       justify-content center
       overflow-y auto
+
+      // &::after
+      //   content: "";
+      //   position: absolute;
+      //   z-index: 1;
+      //   bottom: 0;
+      //   right: 0;
+      //   bottom: 15px;
+      //   background: linear-gradient(90deg, rgba(212,212,212,0) 0%, rgba(255,255,255,0.53125) 51%, rgba(255,255,255,1) 100%);
+      //   width: 100%;
+      //   height 10%
 
       @media only screen and (max-width: 820px)
         position relative
@@ -369,7 +376,6 @@ export default Vue.extend({
       &__icon
         width 3rem
         height 3rem
-        // filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%)
 
     .btn--shuffle
       position absolute
@@ -382,11 +388,8 @@ export default Vue.extend({
         display none
 
     .btn--ingredients
-      // color #16A085
-      // border 1.5px solid #16A085
       background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
       color white
-      // background white
 
       &:hover
         transform translateY(-3px)

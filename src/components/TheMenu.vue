@@ -13,7 +13,7 @@
       </button>
     </div>
     <div class="container__recipes">
-      <div class="container__media">
+      <div class="container__scroll">
         <router-link
           v-for="recipe in recipes"
           :key="recipe.idMeal"
@@ -93,17 +93,12 @@ export default Vue.extend({
   min-height 100vh
   padding-top 3.5rem
 
-  // @media only screen and (max-width: 770px)
-  //   min-height 100vh
-
   &__header
     max-width 80rem
     margin 0 auto
     padding 6rem 0 3rem 0
 
     &__title
-      // font-family: 'Paytone One', sans-serif;
-      // font-family: 'Abril Fatface', cursive;
       font-family: 'messenger-texture';
       font-size 6rem
       padding 0 2rem
@@ -121,25 +116,13 @@ export default Vue.extend({
       margin-top 2.5rem
       padding 0 15rem
       font-family: 'Montserrat Alternates', sans-serif;
-      // font-family: 'Raleway', sans-serif;
-
 
   &__recipes
     position relative
     max-width 120rem
-    // padding-top 6rem
     margin 6rem auto 0 auto
 
     &::after
-      // content: "";
-      // position: absolute;
-      // top: 0;
-      // right: 2rem;
-      // width: 10%;
-      // height: 100%;
-      // background: #fff;
-      // z-index: 20;
-      // opacity: .7;
       content: "";
       position: absolute;
       z-index: 1;
@@ -150,8 +133,7 @@ export default Vue.extend({
       width: 10%;
       height 100%
 
-
-  &__media
+  &__scroll
     display flex
     align-items center
     white-space: nowrap;
@@ -185,8 +167,8 @@ export default Vue.extend({
       color white
       border: 3px solid white;
 
-    &:hover
-      transform translateY(-15px)
+    &:hover &__photo
+      transform scale(1.1)
 
     &__photo
       width 10rem
@@ -194,6 +176,7 @@ export default Vue.extend({
       border-radius 50%
       object-fit cover
       margin-bottom 1.5rem
+      transition all .5s
 
       @media only screen and (max-width: 770px)
         position absolute
@@ -224,7 +207,6 @@ export default Vue.extend({
     &__icon
       width 2rem
       height 2rem
-      // filter: invert(35%) sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%);
       margin-right 1rem
 
     &__name

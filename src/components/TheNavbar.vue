@@ -1,14 +1,19 @@
 <template>
   <div class="navbar">
-    <!-- <router-link class="navbar__logo navbar__link" to="/"> -->
     <router-link class="navbar__link" to="/">
       <img class="navbar__img" src="../assets/logo.png" alt="Chef hats" />
     </router-link>
     <div>
-      <router-link class="navbar__link" to="/categories"
-        >Categories</router-link
-      >
-      <router-link class="navbar__link" to="/random">Random Recipe</router-link>
+      <router-link class="navbar__link" to="/categories">
+        <button class="btn btn--menu">
+          Categories
+        </button>
+      </router-link>
+      <router-link class="navbar__link" to="/random">
+        <button class="btn btn--menu">
+          Random Recipe
+        </button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -41,13 +46,6 @@ export default Vue.extend({
   div > *:last-child
     margin-left 2rem
 
-  // &__logo
-  //   width 40px
-  //   height 40px
-  //   border-radius 50%
-  //   background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
-  //   position relative
-
   &__img
     width 35px
     height 35px
@@ -58,7 +56,20 @@ export default Vue.extend({
     transform translate(-50%, -50%)
 
   &__link
-    color white
-    font-weight bold
     position relative
+    background #eeeeeeE6
+    padding 1rem
+    border-radius 10px
+
+    &:hover
+      transform translateY(-3px)
+
+.btn--menu
+  background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
+  background-clip text
+  color transparent
+  padding 0
+
+  &:hover
+    transform none
 </style>

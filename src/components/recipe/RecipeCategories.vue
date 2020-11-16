@@ -21,7 +21,6 @@ export default Vue.extend({
   name: "RecipeCategories",
   created() {
     this.$store.dispatch("fetchCategories");
-    console.log(this.categories);
   },
   computed: {
     categories() {

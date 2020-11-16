@@ -104,8 +104,6 @@ export default new Vuex.Store({
         }
       });
 
-      console.log(recipes);
-
       commit("storeRecipes", recipes);
     },
     async fetchCategories({ commit }) {
@@ -120,7 +118,6 @@ export default new Vuex.Store({
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
       const recipe = response.data.meals[0];
-      console.log(recipe);
 
       recipe.ingredients = [];
 
