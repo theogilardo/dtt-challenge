@@ -1,15 +1,15 @@
 <template>
   <div class="container">
     <div v-if="recipe" class="container__recipe">
+      <img
+        v-if="!areIngredientsActive && !areRecommendationsActive"
+        :src="recipe.strMealThumb"
+        alt="Recipe Image"
+        class="container__recipe__image"
+      />
       <div class="container__recipe__right-panel">
-        <img
-          v-if="!areIngredientsActive && !areRecommendationsActive"
-          :src="recipe.strMealThumb"
-          alt="Recipe Image"
-          class="container__recipe__image"
-        />
         <div
-          v-else-if="areRecommendationsActive"
+          v-if="areRecommendationsActive"
           class="container__recipe__recommendations"
         >
           <div
@@ -27,7 +27,7 @@
             </p>
           </div>
         </div>
-        <div v-else class="container__recipe__ingredients">
+        <div v-if="areIngredientsActive" class="container__recipe__ingredients">
           <div>
             <p
               v-for="ingredient in recipe.ingredients"
@@ -72,6 +72,18 @@
       <button v-if="hasShuffle" @click="shuffleRecipe" class="btn btn--shuffle">
         Shuffle
       </button>
+      <a
+        v-if="hasShuffle"
+        @click="shuffleRecipe"
+        href="#"
+        class="container__recipe__shuffle"
+      >
+        <img
+          class="container__recipe__shuffle__icon"
+          src="../../assets/shuffle.svg"
+          alt=""
+        />
+      </a>
     </div>
   </div>
 </template>
@@ -178,7 +190,7 @@ export default Vue.extend({
   &__recipe
     position relative
     display grid
-    grid-template-rows 10rem 4rem 1fr 10rem
+    grid-template-rows 12rem 4rem 1fr 10rem
     grid-template-columns 1fr 1fr
     height 50rem
     max-width 100rem
@@ -187,13 +199,21 @@ export default Vue.extend({
     overflow: hidden;
     background #eeeeeeCC
 
+    @media only screen and (max-width: 700px)
+      height 55rem
+      grid-template-rows 14rem 4rem 1fr 10rem
+
+    @media only screen and (max-width: 500px)
+      height 60rem
+      grid-template-rows 15rem 4rem 1fr 10rem
+
     &__right-panel
       grid-row 1 / 5
       grid-column 2 / 3
 
       @media only screen and (max-width: 820px)
         position relative
-        z-index 5
+        z-index 10
         grid-column 1 / 3
 
 
@@ -204,7 +224,7 @@ export default Vue.extend({
       align-items center
       justify-content center
       flex-direction column
-      background #2c3e50
+      background #2c3e50D9
       padding 4rem
       color white
 
@@ -245,7 +265,7 @@ export default Vue.extend({
       display flex
       align-items center
       justify-content center
-      background #2c3e50
+      background #2c3e50D9
       color white
 
       div
@@ -288,6 +308,12 @@ export default Vue.extend({
       width 100%
       height 100%
       object-fit cover
+      grid-row 1 / 5
+      grid-column 2 / 3
+
+      @media only screen and (max-width: 820px)
+        grid-column 1 / 3
+
 
     &__name
       grid-row 1 / 2
@@ -327,8 +353,23 @@ export default Vue.extend({
 
       @media only screen and (max-width: 820px)
         position relative
-        z-index 5
+        z-index 15
         grid-column 1 / 3
+
+    &__shuffle
+      display none
+      position absolute
+      z-index 10
+      top 10px
+      right 10px
+
+      @media only screen and (max-width: 820px)
+        display block
+
+      &__icon
+        width 3rem
+        height 3rem
+        filter: invert(35%)sepia(96%) saturate(1254%) hue-rotate(329deg) brightness(95%) contrast(95%)
 
     .btn--shuffle
       position absolute
@@ -336,6 +377,9 @@ export default Vue.extend({
       right 10px
       border-radius 0
       border-top-right-radius 10px
+
+      @media only screen and (max-width: 820px)
+        display none
 
     .btn--ingredients
       color #ee5354

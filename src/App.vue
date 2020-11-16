@@ -105,6 +105,11 @@ html
   cursor pointer
   transition all .5s
 
+  @media only screen and (max-width: 460px)
+    z-index 10
+    padding 1rem
+    font-size 1rem
+
   &:hover
     transform translateY(-3px)
 
