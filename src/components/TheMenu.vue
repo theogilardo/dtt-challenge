@@ -56,7 +56,6 @@
 </template>
 
 <script lang="ts">
-import { mapActions } from "vuex";
 import Recipe from "../interface/RecipeApi";
 
 export default {
@@ -71,8 +70,8 @@ export default {
   },
   methods: {
     storeRecipeSelected(recipe: Recipe) {
+      this.$store.commit("storeRecipeSelected", recipe);
       this.$store.dispatch("storeRecipeRecommendations", recipe);
-      this.$store.dispatch("storeRecipeSelected", recipe);
     },
     sortAscendingOrder() {
       this.$store.commit("sortAscendingOrder");

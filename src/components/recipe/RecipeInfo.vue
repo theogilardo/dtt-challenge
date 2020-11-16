@@ -123,7 +123,7 @@ export default {
       return JSON.parse(localStorage.getItem("recipeRandom"));
     },
     isRecipeAvailable() {
-      return this.$store.getters.recipe;
+      return this.$store.getters.recipeRandom;
     },
     isRecipeInLocalStorage() {
       return JSON.parse(localStorage.getItem("recipeRandom"));

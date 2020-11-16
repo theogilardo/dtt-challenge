@@ -10,17 +10,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    recipe: null,
-    recipeRecommendations: null,
+    recipeRandom: null,
     recipeSelected: null,
+    recipeRecommendations: null,
     recipes: [],
     categories: [],
     sortAscending: false,
     sortDescending: false,
   },
   getters: {
-    recipe(state) {
-      return state.recipe;
+    recipeRandom(state) {
+      return state.recipeRandom;
     },
     recipeSelected(state) {
       return state.recipeSelected;
@@ -41,6 +41,23 @@ export default new Vuex.Store({
     },
   },
   mutations: {
+    storeRecipeRandom(state, recipe) {
+      state.recipeRandom = recipe;
+    },
+    storeRecipes(state, recipes) {
+      state.recipes = recipes;
+    },
+    storeRecipeSelected(state, recipe) {
+      state.recipeSelected = recipe;
+      localStorage.removeItem("recipeSelected");
+      localStorage.setItem("recipeSelected", JSON.stringify(recipe));
+    },
+    storeCategories(state, categories) {
+      state.categories = categories.slice(0, 9);
+    },
+    storeRecipeRecommendations(state, recommendations) {
+      state.recipeRecommendations = recommendations;
+    },
     sortAscendingOrder(state) {
       state.sortAscending = true;
       state.sortDescending = false;
@@ -49,28 +66,8 @@ export default new Vuex.Store({
       state.sortAscending = false;
       state.sortDescending = true;
     },
-    storeRecipe(state, recipe) {
-      state.recipe = recipe;
-    },
-    storeRecipeSelected(state, recipe) {
-      state.recipeSelected = recipe;
-    },
-    storeRecipeRecommendations(state, recommendations) {
-      state.recipeRecommendations = recommendations;
-    },
-    storeRecipes(state, recipes) {
-      state.recipes = recipes;
-    },
-    storeCategories(state, categories) {
-      state.categories = categories.slice(0, 9);
-    },
   },
   actions: {
-    storeRecipeSelected({ commit }, recipe) {
-      commit("storeRecipeSelected", recipe);
-      localStorage.removeItem("recipeSelected");
-      localStorage.setItem("recipeSelected", JSON.stringify(recipe));
-    },
     async storeRecipeRecommendations({ commit }, recipe) {
       const response = await axios.get(
         `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipe.strCategory}`
@@ -83,14 +80,13 @@ export default new Vuex.Store({
         JSON.stringify(recommendations)
       );
     },
+
     async fetchRecipes({ commit }) {
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v2/9973533/randomselection.php"
       );
-
       const recipes: Recipe[] = response.data.meals;
 
-      // var map: { [key: string]: string } = {};
       recipes.forEach((recipe: Recipe) => {
         recipe.ingredients = [];
         for (let j = 1; j <= 20; j++) {
@@ -103,9 +99,9 @@ export default new Vuex.Store({
           }
         }
       });
-
       commit("storeRecipes", recipes);
     },
+
     async fetchCategories({ commit }) {
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/categories.php"
@@ -113,12 +109,12 @@ export default new Vuex.Store({
       const categories = response.data.categories;
       commit("storeCategories", categories);
     },
+
     async fetchRandomRecipe({ commit, dispatch }) {
       const response = await axios.get(
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
       const recipe = response.data.meals[0];
-
       recipe.ingredients = [];
 
       for (let j = 1; j <= 20; j++) {
@@ -130,12 +126,10 @@ export default new Vuex.Store({
           );
         }
       }
-
       localStorage.removeItem("recipeRandom");
       localStorage.setItem("recipeRandom", JSON.stringify(recipe));
-      commit("storeRecipe", recipe);
+      commit("storeRecipeRandom", recipe);
       dispatch("storeRecipeRecommendations", recipe);
     },
   },
-  modules: {},
 });
