@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <router-link class="navbar__link" to="/">
-      <img class="navbar__img" src="../assets/logo.png" alt="Logo" />
+      <img class="navbar__img" src="../../assets/logo.png" alt="Logo" />
     </router-link>
     <div>
       <router-link class="navbar__link" to="/categories">

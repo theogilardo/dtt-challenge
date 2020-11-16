@@ -9,7 +9,7 @@
 import RecipeInfo from "./RecipeInfo.vue";
 
 export default {
-  name: "RecipeRandom",
+  name: "RecipeInfoRandom",
   components: {
     RecipeInfo,
   },
