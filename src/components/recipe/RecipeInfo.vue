@@ -274,7 +274,7 @@ export default Vue.extend<Data, Methods, Computed, Props>({
         overflow-y auto
         display flex
         align-items center
-        justify-content flex-start
+        justify-content center
         flex-direction column
 
     &__extra
@@ -365,6 +365,7 @@ export default Vue.extend<Data, Methods, Computed, Props>({
       &__icon
         width 3rem
         height 3rem
+        filter: invert(100%) sepia(12%) saturate(538%) hue-rotate(240deg) brightness(120%) contrast(87%)
 
 .background
   @media only screen and (max-width: 820px)
