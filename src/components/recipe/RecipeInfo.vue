@@ -195,9 +195,9 @@ export default Vue.extend<Data, Methods, Computed, Props>({
     grid-template-columns 1fr 1fr
     height 50rem
     max-width 100rem
-    border-radius: 10px;
+    border-radius: 10px
     margin 0 5rem
-    overflow: hidden;
+    overflow: hidden
     background #eeeeeeCC
 
     @media only screen and (max-width: 820px)
@@ -368,23 +368,6 @@ export default Vue.extend<Data, Methods, Computed, Props>({
       &__icon
         width 3rem
         height 3rem
-
-    .btn--shuffle
-      position absolute
-      top 10px
-      right 10px
-      border-radius 0
-      border-top-right-radius 10px
-
-      @media only screen and (max-width: 820px)
-        display none
-
-    .btn--ingredients
-      background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
-      color white
-
-      &:hover
-        transform translateY(-3px)
 
 .background
   @media only screen and (max-width: 820px)

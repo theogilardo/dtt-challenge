@@ -21,25 +21,18 @@ export default {
 
 <style lang="stylus">
 
-// Fonts
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400&display=swap');
+#app
+  font-family Helvetica, Arial, sans-serif
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+  text-align center
+  color #2c3e50
+  background-image url('./assets/homepage.jpg')
+  background-position center
+  background-size cover
+  min-height 100vh
 
-@font-face {
-  src: url(./fonts/Messenger-Regular.otf);
-  font-family: messenger-regular;
-}
-
-@font-face {
-  src: url(./fonts/Messenger-Rough.otf);
-  font-family: messenger-rough;
-}
-
-@font-face {
-  src: url(./fonts/Messenger-Texture.otf);
-  font-family: messenger-texture;
-}
-
-// Set Up
+// Reset default
 *,
 *::before,
 *::after
@@ -48,18 +41,7 @@ export default {
   box-sizing: border-box
   text-decoration none
 
-#app
-  font-family Avenir, Helvetica, Arial, sans-serif
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-  text-align center
-  color #2c3e50
-  background-image url('./assets/homepagev5.jpg')
-  background-position center
-  background-size cover
-  background-color: #eee;
-  min-height 100vh
-
+// Font-sizes
 html
   font-size: 62.5% // 1rem = 10px
 
@@ -90,6 +72,7 @@ html
     @media only screen and (max-width: 400px)
       font-size: 1.5rem
 
+// Buttons
 .btn
   border none
   padding 1rem 1.5rem
@@ -108,9 +91,56 @@ html
   &:hover
     transform translateY(-3px)
 
+  &--sort
+    margin 3rem 1rem 0 1rem
+
+  &--menu
+    background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
+    background-clip text
+    color transparent
+    padding 0
+
+    &:hover
+      transform none
+
+  &--shuffle
+    position absolute
+    top 10px
+    right 10px
+    border-radius 0
+    border-top-right-radius 10px
+
+    @media only screen and (max-width: 820px)
+      display none
+
+  &--ingredients
+    background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
+    color white
+
+    &:hover
+      transform translateY(-3px)
+
 button:focus
   outline 0
 
 input:focus
   outline 0
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300;400&display=swap');
+
+@font-face {
+  src: url(./fonts/Messenger-Regular.otf);
+  font-family: messenger-regular;
+}
+
+@font-face {
+  src: url(./fonts/Messenger-Rough.otf);
+  font-family: messenger-rough;
+}
+
+@font-face {
+  src: url(./fonts/Messenger-Texture.otf);
+  font-family: messenger-texture;
+}
 </style>

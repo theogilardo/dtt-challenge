@@ -63,13 +63,4 @@ export default {
 
     &:hover
       transform translateY(-3px)
-
-.btn--menu
-  background-image: linear-gradient(132deg, #F4D03F 0%, #16A085 100%);
-  background-clip text
-  color transparent
-  padding 0
-
-  &:hover
-    transform none
 </style>

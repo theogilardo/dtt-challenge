@@ -19,7 +19,7 @@
           :key="recipe.idMeal"
           class="container__recipe"
           :to="{ name: 'recipe-selected', params: { id: recipe.idMeal } }"
-          @click.native="storeRecipeSelected(recipe)"
+          @click="storeRecipeSelected(recipe)"
         >
           <img
             :src="recipe.strMealThumb"
@@ -86,9 +86,6 @@ export default Vue.extend({
 
 <style scoped lang="stylus">
 
-.btn--sort
-  margin 3rem 1rem 0 1rem
-
 .container
   min-height 100vh
   padding-top 3.5rem
@@ -101,7 +98,7 @@ export default Vue.extend({
     &__title
       font-family: 'messenger-texture';
       font-size 6rem
-      padding 0 2rem
+      padding 4rem 2rem 0 2rem
 
       @media only screen and (max-width: 600px)
 
