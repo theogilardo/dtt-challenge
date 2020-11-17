@@ -16,13 +16,15 @@
 </template>
 
 <script lang="ts">
+import Category from "../../interface/categoryAPI";
+
 export default {
   name: "RecipeCategories",
   created() {
     this.$store.dispatch("fetchCategories");
   },
   computed: {
-    categories() {
+    categories(): Category[] {
       return this.$store.getters.categories;
     },
   },

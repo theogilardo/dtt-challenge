@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts">
-// @ts-nocheck
 import RecipeInfo from "./RecipeInfo.vue";
 
 export default {

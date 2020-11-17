@@ -89,8 +89,33 @@
 </template>
 
 <script lang="ts">
-// @ts-nocheck
-export default {
+import Vue from "vue";
+import Recipe from "../../interface/RecipeApi";
+
+interface Props {
+  hasShuffle: Boolean;
+}
+
+interface Data {
+  areIngredientsActive: Boolean;
+  areRecommendationsActive: Boolean;
+}
+
+interface Computed {
+  recipe: Recipe;
+  recipeRandom: Recipe;
+  recipeSelected: Recipe;
+  recipeRecommendations: Recipe[];
+  isRecipeRandomInLocalStorage: Recipe;
+}
+
+interface Methods {
+  shuffleRecipe: any;
+  showIngredients: any;
+  showRecommendations: any;
+}
+
+export default Vue.extend<Data, Methods, Computed, Props>({
   name: "RecipeInfo",
   props: {
     hasShuffle: {
@@ -99,7 +124,7 @@ export default {
     },
   },
   created() {
-    if (!this.isRecipeInLocalStorage && this.hasShuffle) {
+    if (!this.isRecipeRandomInLocalStorage && this.hasShuffle) {
       this.$store.dispatch("fetchRandomRecipe");
     }
   },
@@ -111,40 +136,28 @@ export default {
   },
   computed: {
     recipe() {
-      if (this.hasShuffle) {
-        return this.recipeRandom;
-      }
-      return this.recipeSelected;
+      return this.hasShuffle ? this.recipeRandom : this.recipeSelected;
     },
     recipeRandom() {
-      if (this.isRecipeAvailable) {
-        return this.isRecipeAvailable;
-      }
-      return JSON.parse(localStorage.getItem("recipeRandom"));
-    },
-    isRecipeAvailable() {
-      return this.$store.getters.recipeRandom;
-    },
-    isRecipeInLocalStorage() {
-      return JSON.parse(localStorage.getItem("recipeRandom"));
+      const recipeRandom = this.$store.getters.recipeRandom;
+      return recipeRandom
+        ? JSON.parse(localStorage.getItem("recipeRandom")!)
+        : recipeRandom;
     },
     recipeSelected() {
-      if (this.isRecipeSelectedAvailable) {
-        return this.$store.getters.recipeSelected;
-      }
-      return JSON.parse(localStorage.getItem("recipeSelected"));
-    },
-    isRecipeSelectedAvailable() {
-      return this.$store.getters.recipeSelected;
+      const recipeSelected = this.$store.getters.recipeSelected;
+      return recipeSelected
+        ? JSON.parse(localStorage.getItem("recipeSelected")!)
+        : recipeSelected;
     },
     recipeRecommendations() {
-      if (this.isRecommendationAvailable) {
-        return this.isRecommendationAvailable;
-      }
-      return JSON.parse(localStorage.getItem("recipeRecommendations"));
+      const recipeRecommendations = this.$store.getters.recipeRecommendations;
+      return recipeRecommendations
+        ? JSON.parse(localStorage.getItem("recipeRecommendations")!)
+        : recipeRecommendations;
     },
-    isRecommendationAvailable() {
-      return this.$store.getters.recipeRecommendations;
+    isRecipeRandomInLocalStorage() {
+      return JSON.parse(localStorage.getItem("recipeRandom")!);
     },
   },
   methods: {
@@ -160,7 +173,7 @@ export default {
       this.areRecommendationsActive = !this.areRecommendationsActive;
     },
   },
-};
+});
 </script>
 
 <style lang="stylus" scoped>

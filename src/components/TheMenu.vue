@@ -56,15 +56,16 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import Recipe from "../interface/RecipeApi";
 
-export default {
+export default Vue.extend({
   name: "TheMenu",
   created() {
     this.$store.dispatch("fetchRecipes");
   },
   computed: {
-    recipes() {
+    recipes(): Recipe[] {
       return this.$store.getters.recipes;
     },
   },
@@ -80,7 +81,7 @@ export default {
       this.$store.commit("sortDescendingOrder");
     },
   },
-};
+});
 </script>
 
 <style scoped lang="stylus">
