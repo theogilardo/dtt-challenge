@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import TheMenu from "../components/TheMenu.vue";
+import TheHomepage from "../components/TheHomepage.vue";
 import RecipeCategories from "../components/recipe/RecipeCategories.vue";
 import RecipeInfoRandom from "../components/recipe/RecipeInfoRandom.vue";
 import RecipeSelected from "../components/recipe/RecipeInfoSelected.vue";
@@ -10,8 +10,8 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "TheMenu",
-    component: TheMenu,
+    name: "TheHomepage",
+    component: TheHomepage,
   },
   {
     path: "/recipe/:id",

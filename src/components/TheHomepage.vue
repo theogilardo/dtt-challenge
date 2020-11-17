@@ -28,7 +28,7 @@
           />
           <div class="container__recipe__box">
             <h3 class="container__recipe__name">
-              {{ recipe.strMeal | reduce }}
+              {{ recipe.strMeal | sliceText }}
             </h3>
             <div class="container__recipe__info">
               <div class="container__recipe__sub-box">
@@ -60,7 +60,7 @@ import Vue from "vue";
 import Recipe from "../interface/recipe";
 
 export default Vue.extend({
-  name: "TheMenu",
+  name: "TheHomepage",
   created() {
     this.$store.dispatch("fetchRecipes");
   },

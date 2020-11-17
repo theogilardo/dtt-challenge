@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-Vue.filter("reduce", (value: string) => {
+Vue.filter("sliceText", (value: string) => {
   if (value.length > 20) {
     return `${value.slice(0, 20)}..`;
   }
