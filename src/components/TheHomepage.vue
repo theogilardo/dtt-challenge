@@ -93,7 +93,7 @@ export default Vue.extend({
   &__header
     max-width 80rem
     margin 0 auto
-    padding 6rem 0 3rem 0
+    padding 5rem 0 1.5rem 0
 
     &__title
       font-family: 'messenger-texture';
