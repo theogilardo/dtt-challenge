@@ -1,6 +1,6 @@
 import Recipe from "../interface/recipe";
 
-export const $helper = {
+export const $helpers = {
   reformatIngredients: function(recipe: Recipe) {
     recipe.ingredients = [];
     let numberOfIngredients = 0;

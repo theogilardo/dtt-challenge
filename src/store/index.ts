@@ -3,7 +3,7 @@ import Vuex from "vuex";
 import axios from "axios";
 import Recipe from "../interface/recipe";
 import Category from "../interface/category";
-import { $helper } from "../utils/helper";
+import { $helpers } from "../utils/helpers";
 
 Vue.use(Vuex);
 
@@ -76,7 +76,7 @@ export default new Vuex.Store({
       const recipes = response.data.meals;
 
       recipes.forEach((recipe: Recipe) => {
-        $helper.reformatIngredients(recipe);
+        $helpers.reformatIngredients(recipe);
       });
 
       commit("storeRecipes", recipes);
@@ -84,7 +84,7 @@ export default new Vuex.Store({
 
     storeRecipeSelected({ commit }, recipe) {
       commit("storeRecipeSelected", recipe);
-      $helper.resetLocalStorage("recipeSelected", recipe);
+      $helpers.resetLocalStorage("recipeSelected", recipe);
     },
 
     async fetchRandomRecipe({ commit, dispatch }) {
@@ -93,8 +93,8 @@ export default new Vuex.Store({
       );
       const recipe: Recipe = response.data.meals[0];
 
-      $helper.reformatIngredients(recipe);
-      $helper.resetLocalStorage("recipeRandom", recipe);
+      $helpers.reformatIngredients(recipe);
+      $helpers.resetLocalStorage("recipeRandom", recipe);
       commit("storeRecipeRandom", recipe);
       dispatch("storeRecipeRecommendations", recipe);
     },
@@ -105,7 +105,7 @@ export default new Vuex.Store({
       );
       const recommendations = response.data.meals.slice(0, 3);
 
-      $helper.resetLocalStorage("recipeRecommendations", recommendations);
+      $helpers.resetLocalStorage("recipeRecommendations", recommendations);
       commit("storeRecipeRecommendations", recommendations);
     },
 
