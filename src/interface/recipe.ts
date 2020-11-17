@@ -1,6 +1,6 @@
-export default API;
+export default Recipe;
 
-interface API {
+interface Recipe {
   idMeal: string;
   strMeal: string;
   ingredients: string[];

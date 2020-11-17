@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Category from "../../interface/categoryAPI";
+import Category from "../../interface/category";
 
 export default Vue.extend({
   name: "RecipeCategories",

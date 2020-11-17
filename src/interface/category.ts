@@ -1,6 +1,6 @@
-export default category;
+export default Category;
 
-interface category {
+interface Category {
   idCategory: string;
   strCategory: string;
   strCategoryThumb: string;

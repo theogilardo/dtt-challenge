@@ -90,7 +90,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Recipe from "../../interface/RecipeAPI";
+import Recipe from "../../interface/recipe";
 
 interface Props {
   hasShuffle: boolean;

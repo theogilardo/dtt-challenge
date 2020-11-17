@@ -1,16 +1,17 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import Recipe from "../interface/RecipeAPI";
-import Category from "../interface/categoryAPI";
+import Recipe from "../interface/recipe";
+import Category from "../interface/category";
+import { $helper } from "../utils/helper";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     recipes: [] as Recipe[],
-    recipeRandom: {} as Recipe,
     recipeSelected: {} as Recipe,
+    recipeRandom: {} as Recipe,
     recipeRecommendations: [] as Recipe[],
     categories: [] as Category[],
     sortAscending: false,
@@ -29,11 +30,11 @@ export default new Vuex.Store({
         a.strMeal < b.strMeal ? 1 : -1
       );
     },
-    recipeRandom(state): Recipe {
-      return state.recipeRandom;
-    },
     recipeSelected(state): Recipe {
       return state.recipeSelected;
+    },
+    recipeRandom(state): Recipe {
+      return state.recipeRandom;
     },
     recipeRecommendations(state): Recipe[] {
       return state.recipeRecommendations;
@@ -43,16 +44,14 @@ export default new Vuex.Store({
     },
   },
   mutations: {
-    storeRecipeRandom(state, recipe) {
-      state.recipeRandom = recipe;
-    },
     storeRecipes(state, recipes) {
       state.recipes = recipes;
     },
     storeRecipeSelected(state, recipe) {
       state.recipeSelected = recipe;
-      localStorage.removeItem("recipeSelected");
-      localStorage.setItem("recipeSelected", JSON.stringify(recipe));
+    },
+    storeRecipeRandom(state, recipe) {
+      state.recipeRandom = recipe;
     },
     storeCategories(state, categories) {
       state.categories = categories.slice(0, 9);
@@ -76,32 +75,16 @@ export default new Vuex.Store({
       );
       const recipes = response.data.meals;
 
-      // For each recipe, reformat the ingredients
-      // A for loop is used because we want to iterate a specific time to reformat the ingredients
       recipes.forEach((recipe: Recipe) => {
-        recipe.ingredients = [];
-
-        let numberOfIngredients = 0;
-
-        for (const [key, value] of Object.entries(recipe)) {
-          const formattedKey = key.replace(/[0-9]/g, "");
-          if (formattedKey === "strIngredient" && value) {
-            numberOfIngredients++;
-          }
-        }
-
-        for (let j = 1; j <= numberOfIngredients; j++) {
-          if (recipe[`strIngredient${j}`]) {
-            recipe.ingredients.push(
-              `${recipe[`strIngredient${j}`]} <strong> ${
-                recipe[`strMeasure${j}`]
-              }</strong>`
-            );
-          }
-        }
+        $helper.reformatIngredients(recipe);
       });
 
       commit("storeRecipes", recipes);
+    },
+
+    storeRecipeSelected({ commit }, recipe) {
+      commit("storeRecipeSelected", recipe);
+      $helper.resetLocalStorage("recipeSelected", recipe);
     },
 
     async fetchRandomRecipe({ commit, dispatch }) {
@@ -109,34 +92,9 @@ export default new Vuex.Store({
         "https://www.themealdb.com/api/json/v1/1/random.php"
       );
       const recipe: Recipe = response.data.meals[0];
-      recipe.ingredients = [];
 
-      // For each recipe, reformat the ingredients
-      // A for loop is used because we want to iterate a specific time to reformat the ingredients
-      recipe.ingredients = [];
-
-      let numberOfIngredients = 0;
-
-      for (const [key, value] of Object.entries(recipe)) {
-        const formattedKey = key.replace(/[0-9]/g, "");
-        if (formattedKey === "strIngredient" && value) {
-          numberOfIngredients++;
-        }
-      }
-
-      for (let j = 1; j <= numberOfIngredients; j++) {
-        if (recipe[`strIngredient${j}`]) {
-          recipe.ingredients.push(
-            `${recipe[`strIngredient${j}`]} <strong> ${
-              recipe[`strMeasure${j}`]
-            }</strong>`
-          );
-        }
-      }
-
-      console.log("hello");
-      localStorage.removeItem("recipeRandom");
-      localStorage.setItem("recipeRandom", JSON.stringify(recipe));
+      $helper.reformatIngredients(recipe);
+      $helper.resetLocalStorage("recipeRandom", recipe);
       commit("storeRecipeRandom", recipe);
       dispatch("storeRecipeRecommendations", recipe);
     },
@@ -147,11 +105,7 @@ export default new Vuex.Store({
       );
       const recommendations = response.data.meals.slice(0, 3);
 
-      localStorage.removeItem("recipeRecommendations");
-      localStorage.setItem(
-        "recipeRecommendations",
-        JSON.stringify(recommendations)
-      );
+      $helper.resetLocalStorage("recipeRecommendations", recommendations);
       commit("storeRecipeRecommendations", recommendations);
     },
 

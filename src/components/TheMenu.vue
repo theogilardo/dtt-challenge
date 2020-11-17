@@ -57,7 +57,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Recipe from "../interface/RecipeAPI";
+import Recipe from "../interface/recipe";
 
 export default Vue.extend({
   name: "TheMenu",
@@ -71,7 +71,7 @@ export default Vue.extend({
   },
   methods: {
     storeRecipeSelected(recipe: Recipe) {
-      this.$store.commit("storeRecipeSelected", recipe);
+      this.$store.dispatch("storeRecipeSelected", recipe);
       this.$store.dispatch("storeRecipeRecommendations", recipe);
     },
     sortAscendingOrder() {
