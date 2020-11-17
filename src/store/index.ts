@@ -96,10 +96,10 @@ export default new Vuex.Store({
       $helpers.reformatIngredients(recipe);
       $helpers.resetLocalStorage("recipeRandom", recipe);
       commit("storeRecipeRandom", recipe);
-      dispatch("storeRecipeRecommendations", recipe);
+      dispatch("fetchRecipeRecommendations", recipe);
     },
 
-    async storeRecipeRecommendations({ commit }, recipe) {
+    async fetchRecipeRecommendations({ commit }, recipe) {
       const response = await axios.get(
         `https://www.themealdb.com/api/json/v1/1/filter.php?c=${recipe.strCategory}`
       );

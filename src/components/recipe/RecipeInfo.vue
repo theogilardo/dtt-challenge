@@ -269,16 +269,13 @@ export default Vue.extend<Data, Methods, Computed, Props>({
       color white
 
       div
-        height 75%
+        height 100%
         width 100%
         overflow-y auto
         display flex
         align-items center
         justify-content flex-start
         flex-direction column
-
-    &__ingredient
-      margin-bottom 1rem
 
     &__extra
       grid-row 2 / 3
