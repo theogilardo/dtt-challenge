@@ -57,7 +57,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Recipe from "../interface/RecipeApi";
+import Recipe from "../interface/RecipeAPI";
 
 export default Vue.extend({
   name: "TheMenu",

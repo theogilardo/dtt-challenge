@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
-import Recipe from "../interface/RecipeApi";
+import Recipe from "../interface/RecipeAPI";
 import Category from "../interface/categoryAPI";
 
 Vue.use(Vuex);

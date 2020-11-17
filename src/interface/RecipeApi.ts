@@ -4,7 +4,6 @@ interface API {
   idMeal: string;
   strMeal: string;
   ingredients: string[];
-  strDrinkAlternate: null;
   strCategory: string;
   strArea: string;
   strInstructions: string;
@@ -52,5 +51,5 @@ interface API {
   strMeasure19: string;
   strMeasure20: string;
   strSource: string;
-  dateModified: null;
+  [key: string]: string | string[];
 }

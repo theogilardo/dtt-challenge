@@ -16,9 +16,10 @@
 </template>
 
 <script lang="ts">
+import Vue from "vue";
 import Category from "../../interface/categoryAPI";
 
-export default {
+export default Vue.extend({
   name: "RecipeCategories",
   created() {
     this.$store.dispatch("fetchCategories");
@@ -28,7 +29,7 @@ export default {
       return this.$store.getters.categories;
     },
   },
-};
+});
 </script>
 
 <style lang="stylus" scoped>

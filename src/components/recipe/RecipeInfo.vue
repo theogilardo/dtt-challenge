@@ -90,7 +90,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Recipe from "../../interface/RecipeApi";
+import Recipe from "../../interface/RecipeAPI";
 
 interface Props {
   hasShuffle: boolean;
@@ -124,8 +124,6 @@ export default Vue.extend<Data, Methods, Computed, Props>({
     },
   },
   created() {
-    console.log(this.$store.getters.recipeRandom);
-    console.log(this.recipeRandom);
     if (!this.isRecipeRandomInLocalStorage && this.hasShuffle) {
       this.$store.dispatch("fetchRandomRecipe");
     }
