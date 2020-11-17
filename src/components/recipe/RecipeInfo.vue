@@ -110,9 +110,9 @@ interface Computed {
 }
 
 interface Methods {
-  shuffleRecipe: any;
-  showIngredients: any;
-  showRecommendations: any;
+  shuffleRecipe: () => void;
+  showIngredients: () => void;
+  showRecommendations: () => void;
 }
 
 export default Vue.extend<Data, Methods, Computed, Props>({
