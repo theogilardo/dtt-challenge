@@ -93,12 +93,12 @@ import Vue from "vue";
 import Recipe from "../../interface/RecipeApi";
 
 interface Props {
-  hasShuffle: Boolean;
+  hasShuffle: boolean;
 }
 
 interface Data {
-  areIngredientsActive: Boolean;
-  areRecommendationsActive: Boolean;
+  areIngredientsActive: boolean;
+  areRecommendationsActive: boolean;
 }
 
 interface Computed {
@@ -124,6 +124,8 @@ export default Vue.extend<Data, Methods, Computed, Props>({
     },
   },
   created() {
+    console.log(this.$store.getters.recipeRandom);
+    console.log(this.recipeRandom);
     if (!this.isRecipeRandomInLocalStorage && this.hasShuffle) {
       this.$store.dispatch("fetchRandomRecipe");
     }
@@ -140,21 +142,21 @@ export default Vue.extend<Data, Methods, Computed, Props>({
     },
     recipeRandom() {
       const recipeRandom = this.$store.getters.recipeRandom;
-      return recipeRandom
-        ? JSON.parse(localStorage.getItem("recipeRandom")!)
-        : recipeRandom;
+      return Object.keys(recipeRandom).length
+        ? recipeRandom
+        : JSON.parse(localStorage.getItem("recipeRandom")!);
     },
     recipeSelected() {
       const recipeSelected = this.$store.getters.recipeSelected;
-      return recipeSelected
-        ? JSON.parse(localStorage.getItem("recipeSelected")!)
-        : recipeSelected;
+      return Object.keys(recipeSelected).length
+        ? recipeSelected
+        : JSON.parse(localStorage.getItem("recipeSelected")!);
     },
     recipeRecommendations() {
       const recipeRecommendations = this.$store.getters.recipeRecommendations;
-      return recipeRecommendations
-        ? JSON.parse(localStorage.getItem("recipeRecommendations")!)
-        : recipeRecommendations;
+      return recipeRecommendations.length
+        ? recipeRecommendations
+        : JSON.parse(localStorage.getItem("recipeRecommendations")!);
     },
     isRecipeRandomInLocalStorage() {
       return JSON.parse(localStorage.getItem("recipeRandom")!);
